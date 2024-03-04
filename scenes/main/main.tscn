@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://dm2l75v6t7uhg"]
+
+[ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
+[ext_resource type="PackedScene" uid="uid://kneiyeccsvov" path="res://scenes/disc-register/disc_register23.tscn" id="1_fo4ia"]
+[ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
+[ext_resource type="PackedScene" uid="uid://c2x25ywg186p1" path="res://scenes/flip-flop/flipflop5.tscn" id="4_87mqh"]
+[ext_resource type="PackedScene" uid="uid://dv5hf28w6pofc" path="res://scenes/disc-register/disc_register24.tscn" id="4_a4i63"]
+[ext_resource type="PackedScene" uid="uid://c3g7wdafgr3w1" path="res://scenes/flip-flop/flipflop3.tscn" id="5_6nj2o"]
+[ext_resource type="PackedScene" uid="uid://dnglsxovw2ru6" path="res://scenes/flip-flop/flipflop2.tscn" id="5_26rxo"]
+[ext_resource type="PackedScene" uid="uid://bsut3nmi7dp1" path="res://scenes/flip-flop/flipflop12.tscn" id="6_1uquu"]
+
+[node name="main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = 648.0
+offset_right = 688.0
+offset_bottom = 40.0
+scale = Vector2(50, 39.228)
+color = Color(0, 0.109804, 0.14902, 1)
+
+[node name="labels" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="labels"]
+offset_left = 1144.0
+offset_top = 16.0
+offset_right = 1184.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 30
+text = "DISK"
+
+[node name="Label2" type="Label" parent="labels"]
+offset_left = 248.0
+offset_top = 16.0
+offset_right = 408.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 30
+text = "FLIP-FLOPS"
+
+[node name="flipflops" type="Node2D" parent="."]
+position = Vector2(0, -48)
+
+[node name="ff-accumulator" parent="flipflops" instance=ExtResource("1_0fj50")]
+position = Vector2(-376, -560)
+register_label = "Accumulator"
+num_registers = 4
+bitnames_label = "A0 A24 A23 Ax"
+
+[node name="link" type="Line2D" parent="flipflops/ff-accumulator"]
+position = Vector2(1112, 798)
+points = PackedVector2Array(-392, 0, 0, 0)
+width = 3.0
+
+[node name="ff-lower-accumulator" parent="flipflops" instance=ExtResource("1_0fj50")]
+position = Vector2(-376, -480)
+register_label = "Lower Accumulator"
+num_registers = 4
+bitnames_label = "Lx Lp L24 L0"
+
+[node name="link" type="Line2D" parent="flipflops/ff-lower-accumulator"]
+position = Vector2(1112, 798)
+points = PackedVector2Array(-392, 0, 0, 0)
+width = 3.0
+
+[node name="ff-accumulator-control" parent="flipflops" instance=ExtResource("1_i6vw8")]
+position = Vector2(-376, -640)
+register_label = "Accumulator Control"
+num_registers = 1
+
+[node name="ff-number" parent="flipflops" instance=ExtResource("1_0fj50")]
+position = Vector2(-376, -376)
+register_label = "Number"
+num_registers = 4
+bitnames_label = "Np N24 Nx Nc"
+
+[node name="link" type="Line2D" parent="flipflops/ff-number"]
+position = Vector2(1112, 798)
+points = PackedVector2Array(-392, 0, 0, 0)
+width = 3.0
+
+[node name="ff-instruction" parent="flipflops" instance=ExtResource("5_26rxo")]
+position = Vector2(-376, -296)
+register_label = "Instruction"
+num_registers = 2
+bitnames_label = "Ip Ic"
+
+[node name="link" type="Line2D" parent="flipflops/ff-instruction"]
+position = Vector2(1112, 798)
+points = PackedVector2Array(-457, 0, 0, 0)
+width = 3.0
+
+[node name="ff-op-buffer" parent="flipflops" instance=ExtResource("1_0fj50")]
+position = Vector2(-376, 104)
+register_label = "OPERATIONS BUFFER"
+num_registers = 4
+bitnames_label = "Ip Ob3 Ob2 Ob1"
+
+[node name="ff-op-store" parent="flipflops" instance=ExtResource("1_0fj50")]
+position = Vector2(-376, 184)
+register_label = "OPERATION STORE"
+num_registers = 4
+bitnames_label = "O4 O3 O2 O1"
+
+[node name="ff-ch-buffer" parent="flipflops" instance=ExtResource("4_87mqh")]
+position = Vector2(-376, -216)
+register_label = "Channel Buffer"
+num_registers = 5
+bitnames_label = "Cb5 Cb4 Cb3 Cb2 Cb1"
+
+[node name="ff-ch-store" parent="flipflops" instance=ExtResource("4_87mqh")]
+position = Vector2(-376, -136)
+register_label = "Channel Store"
+num_registers = 5
+bitnames_label = "C5 C4 C3 C2 C1"
+
+[node name="ff-flag-code-buffer" parent="flipflops" instance=ExtResource("5_6nj2o")]
+position = Vector2(-376, -56)
+register_label = "Flag Code Buffer"
+num_registers = 3
+bitnames_label = "Sb3 Sb2 Sb1"
+
+[node name="ff-flag-code-store" parent="flipflops" instance=ExtResource("5_6nj2o")]
+position = Vector2(-376, 24)
+register_label = "Flag Code Buffer"
+num_registers = 3
+bitnames_label = "S3 S2 S1"
+
+[node name="ff-bit-counter" parent="flipflops" instance=ExtResource("6_1uquu")]
+position = Vector2(-376, 264)
+register_label = "Bit Counter"
+register_value = 231
+num_registers = 12
+bitnames_label = "B1 B2 B3 B4 B5 B6 Tp Tx To Tp Tx To"
+
+[node name="disk-registers" type="Node2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="disc-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
+position = Vector2(144, -624)
+register_label = "Accumulator"
+register_value = 538
+num_registers = 23
+
+[node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
+position = Vector2(144, -544)
+register_label = "Lower Accumulator"
+num_registers = 23
+
+[node name="disc-number" parent="disk-registers" instance=ExtResource("4_a4i63")]
+position = Vector2(144, -440)
+register_label = "Number"
+num_registers = 24
+
+[node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
+position = Vector2(144, -360)
+register_label = "Instruction"
+num_registers = 24

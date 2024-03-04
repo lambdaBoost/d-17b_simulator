@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsut3nmi7dp1"]
+
+[ext_resource type="Script" path="res://scenes/flip-flop/flipflop.gd" id="1_qf1cs"]
+[ext_resource type="Texture2D" uid="uid://dbxj3i74v3baa" path="res://assets/grid-square.png" id="2_ikevr"]
+[ext_resource type="FontFile" uid="uid://kkgkkctae5wv" path="res://assets/mallard-smooth.ttf" id="3_iihcs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yu1ek"]
+texture = ExtResource("2_ikevr")
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ns71d"]
+sources/1 = SubResource("TileSetAtlasSource_yu1ek")
+
+[sub_resource type="FontVariation" id="FontVariation_biloi"]
+base_font = ExtResource("3_iihcs")
+spacing_glyph = 14
+
+[sub_resource type="FontVariation" id="FontVariation_qiblh"]
+spacing_space = 14
+
+[sub_resource type="FontVariation" id="FontVariation_tjcti"]
+base_font = ExtResource("3_iihcs")
+spacing_glyph = 17
+
+[node name="flipflop4" type="Node2D"]
+script = ExtResource("1_qf1cs")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ns71d")
+format = 2
+layer_0/tile_data = PackedInt32Array(3145765, 1, 0, 3211301, 1, 1, 3145766, 65537, 0, 3211302, 65537, 1, 3145767, 1, 0, 3211303, 1, 1, 3145768, 65537, 0, 3211304, 65537, 1, 3145769, 1, 0, 3211305, 1, 1, 3145770, 65537, 0, 3211306, 65537, 1, 3145771, 1, 0, 3211307, 1, 1, 3145772, 65537, 0, 3211308, 65537, 1, 3145773, 1, 0, 3211309, 1, 1, 3145774, 65537, 0, 3211310, 65537, 1, 3145775, 1, 0, 3211311, 1, 1, 3145776, 65537, 0, 3211312, 65537, 1, 3145777, 1, 0, 3211313, 1, 1, 3145778, 65537, 0, 3211314, 65537, 1, 3145779, 1, 0, 3211315, 1, 1, 3145780, 65537, 0, 3211316, 65537, 1, 3145781, 1, 0, 3211317, 1, 1, 3145782, 65537, 0, 3211318, 65537, 1, 3145783, 1, 0, 3211319, 1, 1, 3145784, 65537, 0, 3211320, 65537, 1, 3145785, 1, 0, 3211321, 1, 1, 3145786, 65537, 0, 3211322, 65537, 1, 3145787, 1, 0, 3211323, 1, 1, 3145788, 65537, 0, 3211324, 65537, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 593.0
+offset_top = 741.0
+offset_right = 714.0
+offset_bottom = 764.0
+uppercase = true
+
+[node name="value" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 773.0
+offset_right = 1359.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="bitNames" type="Label" parent="."]
+offset_left = 594.0
+offset_top = 803.0
+offset_right = 634.0
+offset_bottom = 826.0
+theme_override_fonts/font = SubResource("FontVariation_qiblh")
+theme_override_font_sizes/font_size = 12
+
+[node name="value_binary" type="Label" parent="."]
+offset_left = 603.0
+offset_top = 774.0
+offset_right = 992.0
+offset_bottom = 797.0
+theme_override_fonts/font = SubResource("FontVariation_tjcti")
+theme_override_font_sizes/font_size = 40

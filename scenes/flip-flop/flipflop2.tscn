@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnglsxovw2ru6"]
+
+[ext_resource type="Script" path="res://scenes/flip-flop/flipflop.gd" id="1_8xe2e"]
+[ext_resource type="Texture2D" uid="uid://dbxj3i74v3baa" path="res://assets/grid-square.png" id="2_ikwfx"]
+[ext_resource type="FontFile" uid="uid://kkgkkctae5wv" path="res://assets/mallard-smooth.ttf" id="3_5ha28"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yu1ek"]
+texture = ExtResource("2_ikwfx")
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ns71d"]
+sources/1 = SubResource("TileSetAtlasSource_yu1ek")
+
+[sub_resource type="FontVariation" id="FontVariation_biloi"]
+base_font = ExtResource("3_5ha28")
+spacing_glyph = 14
+
+[sub_resource type="FontVariation" id="FontVariation_02axg"]
+spacing_space = 14
+
+[sub_resource type="FontVariation" id="FontVariation_kpqcs"]
+base_font = ExtResource("3_5ha28")
+spacing_glyph = 17
+
+[node name="flipflop" type="Node2D"]
+script = ExtResource("1_8xe2e")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ns71d")
+format = 2
+layer_0/tile_data = PackedInt32Array(3145765, 1, 0, 3211301, 1, 1, 3145766, 65537, 0, 3211302, 65537, 1, 3145767, 1, 0, 3211303, 1, 1, 3145768, 65537, 0, 3211304, 65537, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 592.0
+offset_top = 744.0
+offset_right = 713.0
+offset_bottom = 767.0
+uppercase = true
+
+[node name="value" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 773.0
+offset_right = 1359.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="bitNames" type="Label" parent="."]
+offset_left = 592.0
+offset_top = 800.0
+offset_right = 632.0
+offset_bottom = 823.0
+theme_override_fonts/font = SubResource("FontVariation_02axg")
+
+[node name="value_binary" type="Label" parent="."]
+offset_left = 603.0
+offset_top = 774.0
+offset_right = 992.0
+offset_bottom = 797.0
+theme_override_fonts/font = SubResource("FontVariation_kpqcs")
+theme_override_font_sizes/font_size = 40
