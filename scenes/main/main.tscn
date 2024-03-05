@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=11 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://kneiyeccsvov" path="res://scenes/disc-register/disc_register23.tscn" id="1_fo4ia"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c3g7wdafgr3w1" path="res://scenes/flip-flop/flipflop3.tscn" id="5_6nj2o"]
 [ext_resource type="PackedScene" uid="uid://dnglsxovw2ru6" path="res://scenes/flip-flop/flipflop2.tscn" id="5_26rxo"]
 [ext_resource type="PackedScene" uid="uid://bsut3nmi7dp1" path="res://scenes/flip-flop/flipflop12.tscn" id="6_1uquu"]
+[ext_resource type="PackedScene" uid="uid://cqpvxwodgiega" path="res://scenes/disc-register/disc_register25.tscn" id="9_178ai"]
+[ext_resource type="PackedScene" uid="uid://cfcs5o3waocjq" path="res://scenes/disc-register/disc_register27.tscn" id="10_08kvm"]
 
 [node name="main" type="Node2D"]
 
@@ -16,26 +18,50 @@ z_index = -1
 offset_left = 648.0
 offset_right = 688.0
 offset_bottom = 40.0
-scale = Vector2(50, 39.228)
+scale = Vector2(50, 68.308)
 color = Color(0, 0.109804, 0.14902, 1)
 
 [node name="labels" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="labels"]
 offset_left = 1144.0
-offset_top = 16.0
-offset_right = 1184.0
-offset_bottom = 39.0
+offset_top = 72.0
+offset_right = 1211.0
+offset_bottom = 114.0
 theme_override_font_sizes/font_size = 30
 text = "DISK"
 
 [node name="Label2" type="Label" parent="labels"]
 offset_left = 248.0
-offset_top = 16.0
+offset_top = 80.0
 offset_right = 408.0
-offset_bottom = 58.0
+offset_bottom = 122.0
 theme_override_font_sizes/font_size = 30
 text = "FLIP-FLOPS"
+
+[node name="Label3" type="Label" parent="labels"]
+offset_left = 704.0
+offset_top = 8.0
+offset_right = 864.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 30
+text = "ARITHMETIC AND CONTROL"
+
+[node name="Label4" type="Label" parent="labels"]
+offset_left = 704.0
+offset_top = 1104.0
+offset_right = 1107.0
+offset_bottom = 1146.0
+theme_override_font_sizes/font_size = 30
+text = "RAPID ACCESS VOLATILE MEMORY"
+
+[node name="Label5" type="Label" parent="labels"]
+offset_left = 704.0
+offset_top = 1768.0
+offset_right = 1197.0
+offset_bottom = 1810.0
+theme_override_font_sizes/font_size = 30
+text = "MAIN MEMORY"
 
 [node name="flipflops" type="Node2D" parent="."]
 position = Vector2(0, -48)
@@ -63,8 +89,8 @@ points = PackedVector2Array(-392, 0, 0, 0)
 width = 3.0
 
 [node name="ff-accumulator-control" parent="flipflops" instance=ExtResource("1_i6vw8")]
-position = Vector2(-376, -640)
-register_label = "Accumulator Control"
+position = Vector2(-552, -560)
+register_label = "A Control"
 num_registers = 1
 
 [node name="ff-number" parent="flipflops" instance=ExtResource("1_0fj50")]
@@ -155,3 +181,138 @@ num_registers = 24
 position = Vector2(144, -360)
 register_label = "Instruction"
 num_registers = 24
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 1624)
+
+[node name="loops" type="Node2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="U-loop" parent="loops" instance=ExtResource("9_178ai")]
+position = Vector2(144, 472)
+register_label = "U-LOOP"
+channel_label = "60"
+num_registers = 25
+num_sectors = 1
+
+[node name="F-loop" parent="loops" instance=ExtResource("9_178ai")]
+position = Vector2(144, 552)
+register_label = "F-LOOP"
+channel_label = "52"
+num_registers = 25
+num_sectors = 4
+
+[node name="V-loop" parent="loops" instance=ExtResource("9_178ai")]
+position = Vector2(144, 632)
+register_label = "V-LOOP"
+channel_label = "70"
+num_registers = 25
+num_sectors = 4
+
+[node name="R-loop" parent="loops" instance=ExtResource("9_178ai")]
+position = Vector2(144, 712)
+register_label = "R-LOOP"
+channel_label = "72"
+num_registers = 25
+num_sectors = 4
+
+[node name="E-loop" parent="loops" instance=ExtResource("9_178ai")]
+position = Vector2(144, 792)
+register_label = "E-LOOP"
+channel_label = "56"
+num_registers = 25
+num_sectors = 8
+
+[node name="H-loop" parent="loops" instance=ExtResource("9_178ai")]
+position = Vector2(144, 872)
+register_label = "H-LOOP"
+channel_label = "54"
+num_registers = 25
+num_sectors = 16
+
+[node name="mainMemory" type="Node2D" parent="."]
+position = Vector2(0, 392)
+
+[node name="channel00" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1344)
+channel_label = "00"
+
+[node name="channel02" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1312)
+channel_label = "02"
+
+[node name="channel04" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1280)
+channel_label = "04"
+
+[node name="channel06" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1248)
+channel_label = "06"
+
+[node name="channel10" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1216)
+channel_label = "10"
+
+[node name="channel12" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1184)
+channel_label = "12"
+
+[node name="channel14" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1152)
+channel_label = "14"
+
+[node name="channel16" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1120)
+channel_label = "16"
+
+[node name="channel20" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1088)
+channel_label = "20"
+
+[node name="channel22" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1056)
+channel_label = "22"
+
+[node name="channel24" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 1024)
+channel_label = "24"
+
+[node name="channel26" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 992)
+channel_label = "26"
+
+[node name="channel30" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 960)
+channel_label = "30"
+
+[node name="channel32" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 928)
+channel_label = "32"
+
+[node name="channel34" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 896)
+channel_label = "34"
+
+[node name="channel36" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 864)
+channel_label = "36"
+
+[node name="channel40" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 832)
+channel_label = "40"
+
+[node name="channel42" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 800)
+channel_label = "42"
+
+[node name="channel44" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 768)
+channel_label = "44"
+
+[node name="channel46" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 736)
+channel_label = "46"
+
+[node name="channel50" parent="mainMemory" instance=ExtResource("10_08kvm")]
+position = Vector2(144, 704)
+channel_label = "50"
