@@ -47,8 +47,10 @@ theme_override_fonts/font = SubResource("FontVariation_biloi")
 theme_override_font_sizes/font_size = 47
 
 [node name="bitNames" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 565.0
+offset_top = 772.0
+offset_right = 605.0
+offset_bottom = 795.0
 
 [node name="value_binary" type="Label" parent="."]
 offset_left = 603.0
