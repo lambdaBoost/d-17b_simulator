@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=16 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://kneiyeccsvov" path="res://scenes/disc-register/disc_register23.tscn" id="1_fo4ia"]
@@ -11,9 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cqpvxwodgiega" path="res://scenes/disc-register/disc_register25.tscn" id="9_178ai"]
 [ext_resource type="PackedScene" uid="uid://cfcs5o3waocjq" path="res://scenes/disc-register/disc_register27.tscn" id="10_08kvm"]
 [ext_resource type="PackedScene" uid="uid://dwsgd2dxxq3us" path="res://scenes/outputs/discrete_out.tscn" id="11_mr1lq"]
-[ext_resource type="PackedScene" uid="uid://detkdfar4sevt" path="res://scenes/outputs/voltage_output.tscn" id="12_sow7b"]
+[ext_resource type="PackedScene" uid="uid://detkdfar4sevt" path="res://scenes/outputs/voltage.tscn" id="12_sow7b"]
 [ext_resource type="PackedScene" uid="uid://cc4mtk2a72hli" path="res://scenes/outputs/character_out.tscn" id="13_wovrm"]
 [ext_resource type="PackedScene" uid="uid://cwxm2n2ivyoyy" path="res://scenes/outputs/binary_out.tscn" id="14_veons"]
+[ext_resource type="PackedScene" uid="uid://dgrde2h1lhuv1" path="res://scenes/outputs/voltage_output.tscn" id="15_orrxs"]
 
 [node name="main" type="Node2D"]
 
@@ -336,27 +337,28 @@ color = Color(0, 0.109804, 0.14902, 1)
 position = Vector2(1032, 224)
 
 [node name="discrete-out" parent="outputs" instance=ExtResource("11_mr1lq")]
+position = Vector2(0, 24)
 hi_output = 5
 
-[node name="voltage_output1" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(512, -344)
+[node name="voltage1" parent="outputs" instance=ExtResource("12_sow7b")]
+position = Vector2(144, -296)
 register_label = "VOLTAGE 1"
 
-[node name="voltage_output2" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(512, -272)
+[node name="voltage2" parent="outputs" instance=ExtResource("12_sow7b")]
+position = Vector2(144, -224)
 register_label = "VOLTAGE 2"
 
-[node name="voltage_output3" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(512, -200)
+[node name="voltage3" parent="outputs" instance=ExtResource("12_sow7b")]
+position = Vector2(144, -152)
 register_label = "VOLTAGE 3"
 
 [node name="character_out" parent="outputs" instance=ExtResource("13_wovrm")]
-position = Vector2(640, 736)
+position = Vector2(640, 672)
 register_label = "CHARACTER OUTPUT"
 bitnames_label = "Sc1 Sc2 Sc3 Sc4 Sc5"
 
 [node name="G1" parent="outputs" instance=ExtResource("1_i6vw8")]
-position = Vector2(264, -544)
+position = Vector2(264, -624)
 num_registers = 1
 bitnames_label = "G1"
 
@@ -368,19 +370,41 @@ offset_bottom = 751.0
 text = "G-registers"
 
 [node name="G2" parent="outputs" instance=ExtResource("1_i6vw8")]
-position = Vector2(264, -512)
+position = Vector2(264, -592)
 num_registers = 1
 bitnames_label = "G2"
 
 [node name="G3" parent="outputs" instance=ExtResource("1_i6vw8")]
-position = Vector2(264, -480)
+position = Vector2(264, -560)
 num_registers = 1
 bitnames_label = "G3"
 
 [node name="binary_out" parent="outputs" instance=ExtResource("14_veons")]
-position = Vector2(640, 968)
+position = Vector2(640, 904)
 register_label = "BINARY OUT"
 bitnames_label = "G31 G30 G21 G20 G11 G10"
+
+[node name="voltage_output1" parent="outputs" instance=ExtResource("15_orrxs")]
+position = Vector2(488, -400)
+register_label = "VOLTAGE OUT"
+bitnames_label = "V30 V20 V10"
+
+[node name="voltage_output2" parent="outputs" instance=ExtResource("15_orrxs")]
+position = Vector2(488, -296)
+bitnames_label = "V31 V21 V11"
+
+[node name="voltage_output3" parent="outputs" instance=ExtResource("15_orrxs")]
+position = Vector2(488, -192)
+bitnames_label = "V32 V22 V12"
+
+[node name="voltage_output4" parent="outputs" instance=ExtResource("15_orrxs")]
+position = Vector2(488, -88)
+bitnames_label = "V33 V23 V13"
+
+[node name="flipflop" parent="outputs" instance=ExtResource("5_6nj2o")]
+position = Vector2(504, -400)
+register_label = "PHASE REGISTER"
+bitnames_label = "P1 P2 P3"
 
 [node name="mappings" type="Node2D" parent="."]
 
@@ -390,40 +414,60 @@ width = 1.0
 default_color = Color(0.768627, 0.65098, 0, 1)
 
 [node name="Line2D" type="Line2D" parent="mappings"]
-points = PackedVector2Array(800, 200, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 304, 2400, 304)
+points = PackedVector2Array(800, 200, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 240, 2400, 240)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D3" type="Line2D" parent="mappings"]
 position = Vector2(-536, 8)
-points = PackedVector2Array(800, 184, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 488, 2384, 488)
+points = PackedVector2Array(800, 184, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 408, 2384, 408)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D2" type="Line2D" parent="mappings"]
+position = Vector2(0, -64)
 points = PackedVector2Array(2400, 240, 2400, 368)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D4" type="Line2D" parent="mappings"]
-position = Vector2(-552, 192)
+position = Vector2(-552, 112)
 points = PackedVector2Array(2400, 256, 2400, 352)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D6" type="Line2D" parent="mappings"]
-position = Vector2(-456, 192)
+position = Vector2(-463, 113)
 points = PackedVector2Array(2400, 256, 2400, 352)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
+[node name="Line2D10" type="Line2D" parent="mappings"]
+position = Vector2(-224, 488)
+points = PackedVector2Array(2400, 208, 2400, 384)
+width = 1.0
+default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
+
 [node name="Line2D7" type="Line2D" parent="mappings"]
-position = Vector2(-48, 192)
-points = PackedVector2Array(2400, 216, 2400, 408)
+position = Vector2(-55, 113)
+points = PackedVector2Array(2399, 231, 2399, 423)
+width = 1.0
+default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
+
+[node name="Line2D9" type="Line2D" parent="mappings"]
+position = Vector2(-40, 456)
+points = PackedVector2Array(2400, 144, 2400, 528)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D5" type="Line2D" parent="mappings"]
+position = Vector2(-7, -79)
 points = PackedVector2Array(1944, 496, 2352, 496)
+width = 1.0
+default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
+
+[node name="Line2D8" type="Line2D" parent="mappings"]
+position = Vector2(56, 288)
+points = PackedVector2Array(2120, 496, 2304, 496)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
