@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=18 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://kneiyeccsvov" path="res://scenes/disc-register/disc_register23.tscn" id="1_fo4ia"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cc4mtk2a72hli" path="res://scenes/outputs/character_out.tscn" id="13_wovrm"]
 [ext_resource type="PackedScene" uid="uid://cwxm2n2ivyoyy" path="res://scenes/outputs/binary_out.tscn" id="14_veons"]
 [ext_resource type="PackedScene" uid="uid://dgrde2h1lhuv1" path="res://scenes/outputs/voltage_output.tscn" id="15_orrxs"]
+[ext_resource type="PackedScene" uid="uid://d0qnu58dm3l5e" path="res://scenes/inputs/discrete_in_A.tscn" id="16_wgaxi"]
+[ext_resource type="PackedScene" uid="uid://bg7fbw1jwuejp" path="res://scenes/inputs/discrete_in_B.tscn" id="17_6lm8l"]
 
 [node name="main" type="Node2D"]
 
@@ -30,9 +32,9 @@ text = "DISK"
 
 [node name="Label6" type="Label" parent="labels"]
 offset_left = 1960.0
-offset_top = 72.0
+offset_top = 8.0
 offset_right = 2097.0
-offset_bottom = 114.0
+offset_bottom = 50.0
 theme_override_font_sizes/font_size = 30
 text = "OUTPUTS
 "
@@ -54,20 +56,28 @@ theme_override_font_sizes/font_size = 30
 text = "ARITHMETIC AND CONTROL"
 
 [node name="Label4" type="Label" parent="labels"]
-offset_left = 704.0
-offset_top = 1104.0
-offset_right = 1107.0
-offset_bottom = 1146.0
+offset_left = 696.0
+offset_top = 1216.0
+offset_right = 1189.0
+offset_bottom = 1258.0
 theme_override_font_sizes/font_size = 30
 text = "RAPID ACCESS VOLATILE MEMORY"
 
 [node name="Label5" type="Label" parent="labels"]
 offset_left = 704.0
-offset_top = 1768.0
+offset_top = 1840.0
 offset_right = 1197.0
-offset_bottom = 1810.0
+offset_bottom = 1882.0
 theme_override_font_sizes/font_size = 30
 text = "MAIN MEMORY"
+
+[node name="Label7" type="Label" parent="labels"]
+offset_left = -608.0
+offset_top = 504.0
+offset_right = -115.0
+offset_bottom = 546.0
+theme_override_font_sizes/font_size = 30
+text = "INPUTS"
 
 [node name="flipflops" type="Node2D" parent="."]
 position = Vector2(0, -48)
@@ -93,11 +103,6 @@ bitnames_label = "Lx Lp L24 L0"
 position = Vector2(1112, 798)
 points = PackedVector2Array(-392, 0, 0, 0)
 width = 3.0
-
-[node name="ff-accumulator-control" parent="flipflops" instance=ExtResource("1_i6vw8")]
-position = Vector2(-552, -560)
-register_label = "A Control"
-num_registers = 1
 
 [node name="ff-number" parent="flipflops" instance=ExtResource("1_0fj50")]
 position = Vector2(-376, -376)
@@ -169,30 +174,30 @@ position = Vector2(0, 16)
 
 [node name="disc-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
 position = Vector2(144, -624)
-register_label = "Accumulator"
 register_value = 538
 num_registers = 23
+register_type = "arithmetic"
 
 [node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
 position = Vector2(144, -544)
-register_label = "Lower Accumulator"
 num_registers = 23
+register_type = "arithmetic"
 
 [node name="disc-number" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -440)
-register_label = "Number"
 num_registers = 24
+register_type = "arithmetic"
 
 [node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -360)
-register_label = "Instruction"
 num_registers = 24
+register_type = "instruction"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1632, 536)
+position = Vector2(1024, 520)
 
 [node name="loops" type="Node2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(-32, 40)
 
 [node name="U-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 472)
@@ -237,7 +242,7 @@ num_registers = 25
 num_sectors = 16
 
 [node name="mainMemory" type="Node2D" parent="."]
-position = Vector2(0, 392)
+position = Vector2(-56, 424)
 
 [node name="channel00" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1344)
@@ -404,6 +409,7 @@ bitnames_label = "V33 V23 V13"
 [node name="flipflop" parent="outputs" instance=ExtResource("5_6nj2o")]
 position = Vector2(504, -400)
 register_label = "PHASE REGISTER"
+num_registers = 3
 bitnames_label = "P1 P2 P3"
 
 [node name="mappings" type="Node2D" parent="."]
@@ -471,3 +477,15 @@ position = Vector2(56, 288)
 points = PackedVector2Array(2120, 496, 2304, 496)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="discrete-in-A" parent="inputs" instance=ExtResource("16_wgaxi")]
+position = Vector2(-1240, 120)
+register_label = "DISCRETE INPUT A"
+num_registers = 19
+
+[node name="discrete-in-B" parent="inputs" instance=ExtResource("17_6lm8l")]
+position = Vector2(-1360, -608)
+register_label = "DISCRETE INPUT B"
+num_registers = 24

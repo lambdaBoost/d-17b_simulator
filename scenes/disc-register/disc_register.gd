@@ -4,6 +4,8 @@ extends Node2D
 @export var register_value: int
 @export var num_registers: int
 @export var num_sectors: int
+@export var displayed_value: String
+@export var register_type: String #arithmetic or instruction (store in decimal or binary string)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,9 +19,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var register_binary = value_to_binary(register_value)
+	
 	var register_binary_label = get_node("value_binary")
-	register_binary_label.text = register_binary
+	
+	if register_type == 'arithmetic':
+		var register_binary = value_to_binary(register_value)
+		register_binary_label.text = register_binary
+		
+	else:
+		register_binary_label.text = displayed_value
 	
 	
 	

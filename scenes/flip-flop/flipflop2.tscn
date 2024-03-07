@@ -34,10 +34,11 @@ format = 2
 layer_0/tile_data = PackedInt32Array(3145765, 1, 0, 3211301, 1, 1, 3145766, 65537, 0, 3211302, 65537, 1, 3145767, 1, 0, 3211303, 1, 1, 3145768, 65537, 0, 3211304, 65537, 1)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 592.0
-offset_top = 744.0
-offset_right = 713.0
-offset_bottom = 767.0
+offset_left = 256.0
+offset_top = 776.0
+offset_right = 585.0
+offset_bottom = 799.0
+horizontal_alignment = 2
 uppercase = true
 
 [node name="value" type="Label" parent="."]
