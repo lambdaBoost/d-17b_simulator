@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=23 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://kneiyeccsvov" path="res://scenes/disc-register/disc_register23.tscn" id="1_fo4ia"]
@@ -17,6 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://dgrde2h1lhuv1" path="res://scenes/outputs/voltage_output.tscn" id="15_orrxs"]
 [ext_resource type="PackedScene" uid="uid://d0qnu58dm3l5e" path="res://scenes/inputs/discrete_in_A.tscn" id="16_wgaxi"]
 [ext_resource type="PackedScene" uid="uid://bg7fbw1jwuejp" path="res://scenes/inputs/discrete_in_B.tscn" id="17_6lm8l"]
+[ext_resource type="Texture2D" uid="uid://3hch4eskpb75" path="res://assets/button_normal.png" id="18_uoexn"]
+[ext_resource type="Texture2D" uid="uid://sq3b6qrbif2n" path="res://assets/button_pressed.png" id="19_n4kv3"]
+[ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="20_on05t"]
+[ext_resource type="Script" path="res://scenes/main/execute_button.gd" id="21_5k0l0"]
+[ext_resource type="Script" path="res://scenes/main/program-control.gd" id="22_t38co"]
 
 [node name="main" type="Node2D"]
 
@@ -191,6 +196,7 @@ register_type = "arithmetic"
 [node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -360)
 num_registers = 24
+displayed_value = "100101010101110011001100"
 register_type = "instruction"
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -489,3 +495,16 @@ num_registers = 19
 position = Vector2(-1360, -608)
 register_label = "DISCRETE INPUT B"
 num_registers = 24
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1424.0
+offset_top = 960.0
+offset_right = 1499.0
+offset_bottom = 1000.0
+texture_normal = ExtResource("18_uoexn")
+texture_pressed = ExtResource("19_n4kv3")
+texture_hover = ExtResource("20_on05t")
+script = ExtResource("21_5k0l0")
+
+[node name="program-control" type="Node2D" parent="."]
+script = ExtResource("22_t38co")

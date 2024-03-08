@@ -35,7 +35,7 @@ func _process(delta):
 func value_to_binary(value):
 	
 	if value == 0:
-		return "0"
+		return "0".repeat(num_registers)
 		
 	
 	else:	
@@ -43,6 +43,10 @@ func value_to_binary(value):
 		while (value > 0):
 			ret_str = str(value&1) + ret_str
 			value = (value>>1)
+		
+		while ret_str.length() < num_registers:
+			ret_str = "0" + ret_str
+			
 		return ret_str
 		
 		
