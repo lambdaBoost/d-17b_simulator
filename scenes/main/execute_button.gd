@@ -24,8 +24,15 @@ func _button_pressed():
 	var channel = instruction.substr(12,5)
 	ch_register.displayed_value = channel
 	
-	#execute instruction
-	op_codes()[operation]
+	print(accumulator_reg.register_value)
+	
+	#execute instruction. this is an inelegant way of doing it....but cant store functions
+	#as dict in godot, and cant use decorators
+	if operation == '1001':
+		cla()
+	elif operation == '1101':
+		add()
+	
 	
 	
 func load_from_instruction_register():
@@ -34,19 +41,20 @@ func load_from_instruction_register():
 	return instruction
 	
 
-func op_codes():
-	"""
-	dictionary of opcodes and their respective functions
-	just add every function below to this
-	"""
-	
-	return{
-		'1001':cla()}
-	
+
 func cla():
 	var operand = instruction_reg.displayed_value.substr(12,12)
 	var accumulator_value = operand.bin_to_int()
 	accumulator_reg.register_value = accumulator_value
+	
+func add():
+	var operand = instruction_reg.displayed_value.substr(12,12)
+	var operand_value = operand.bin_to_int()
+	
+	var current_accumulator = accumulator_reg.register_value
+	var new_accumulator = current_accumulator + operand_value
+	accumulator_reg.register_value = new_accumulator
+
 	
 	
 	

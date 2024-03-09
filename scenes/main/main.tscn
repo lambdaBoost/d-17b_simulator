@@ -179,7 +179,6 @@ position = Vector2(0, 16)
 
 [node name="disc-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
 position = Vector2(144, -624)
-register_value = 538
 num_registers = 23
 register_type = "arithmetic"
 
@@ -196,7 +195,7 @@ register_type = "arithmetic"
 [node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -360)
 num_registers = 24
-displayed_value = "100101010101110011001100"
+displayed_value = "110100000000000000000001"
 register_type = "instruction"
 
 [node name="Camera2D" type="Camera2D" parent="."]
