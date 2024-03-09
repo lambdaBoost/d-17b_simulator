@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://cc4mtk2a72hli"]
+
+[ext_resource type="Script" path="res://scenes/flip-flop/flipflop.gd" id="1_a3e5b"]
+[ext_resource type="Texture2D" uid="uid://dbxj3i74v3baa" path="res://assets/grid-square.png" id="2_tse41"]
+[ext_resource type="FontFile" uid="uid://kkgkkctae5wv" path="res://assets/mallard-smooth.ttf" id="3_tgeeq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yu1ek"]
+texture = ExtResource("2_tse41")
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ns71d"]
+sources/1 = SubResource("TileSetAtlasSource_yu1ek")
+
+[sub_resource type="FontVariation" id="FontVariation_biloi"]
+base_font = ExtResource("3_tgeeq")
+spacing_glyph = 14
+
+[sub_resource type="FontVariation" id="FontVariation_qiblh"]
+spacing_space = 9
+
+[sub_resource type="FontVariation" id="FontVariation_3wevt"]
+base_font = ExtResource("3_tgeeq")
+spacing_glyph = 17
+
+[node name="character_out" type="Node2D"]
+position = Vector2(162, 1299)
+rotation = -1.5708
+script = ExtResource("1_a3e5b")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ns71d")
+format = 2
+layer_0/tile_data = PackedInt32Array(3145765, 1, 0, 3211301, 1, 1, 3145766, 65537, 0, 3211302, 65537, 1, 3145767, 1, 0, 3211303, 1, 1, 3145768, 65537, 0, 3211304, 65537, 1, 3145769, 1, 0, 3211305, 1, 1, 3145770, 65537, 0, 3211306, 65537, 1, 3145771, 1, 0, 3211307, 1, 1, 3145772, 65537, 0, 3211308, 65537, 1, 3145773, 1, 0, 3211309, 1, 1, 3145774, 65537, 0, 3211310, 65537, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 787.0
+offset_top = 735.0
+offset_right = 908.0
+offset_bottom = 758.0
+rotation = 1.5708
+uppercase = true
+
+[node name="value" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 773.0
+offset_right = 1359.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="bitNames" type="Label" parent="."]
+offset_left = 594.0
+offset_top = 744.0
+offset_right = 740.0
+offset_bottom = 767.0
+theme_override_fonts/font = SubResource("FontVariation_qiblh")
+theme_override_font_sizes/font_size = 12
+text = "Sc1 Sc2 Sc3 Sc4 Sc5"
+
+[node name="bitNames2" type="Label" parent="."]
+offset_left = 594.0
+offset_top = 727.0
+offset_right = 750.0
+offset_bottom = 750.0
+theme_override_fonts/font = SubResource("FontVariation_qiblh")
+theme_override_font_sizes/font_size = 12
+text = "          parity"
+
+[node name="value_binary" type="Label" parent="."]
+offset_left = 603.0
+offset_top = 774.0
+offset_right = 992.0
+offset_bottom = 797.0
+theme_override_fonts/font = SubResource("FontVariation_3wevt")
+theme_override_font_sizes/font_size = 40
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(752, 877)
+points = PackedVector2Array(-16, -77, -16, 120)
+width = 2.0
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(720, 877)
+points = PackedVector2Array(-16, -77, -16, 120)
+width = 2.0
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2(687, 877)
+points = PackedVector2Array(-16, -77, -16, 120)
+width = 2.0
+
+[node name="Line2D4" type="Line2D" parent="."]
+position = Vector2(656, 877)
+points = PackedVector2Array(-16, -77, -16, 120)
+width = 2.0
+
+[node name="Line2D5" type="Line2D" parent="."]
+position = Vector2(624, 877)
+points = PackedVector2Array(-16, -77, -16, 120)
+width = 2.0

@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgrde2h1lhuv1"]
+
+[ext_resource type="Script" path="res://scenes/outputs/voltage_output.gd" id="1_tvpxx"]
+[ext_resource type="FontFile" uid="uid://kkgkkctae5wv" path="res://assets/mallard-smooth.ttf" id="3_bgfoh"]
+
+[sub_resource type="FontVariation" id="FontVariation_biloi"]
+base_font = ExtResource("3_bgfoh")
+spacing_glyph = 14
+
+[sub_resource type="FontVariation" id="FontVariation_gg02f"]
+base_font = ExtResource("3_bgfoh")
+
+[sub_resource type="FontVariation" id="FontVariation_ua442"]
+spacing_space = 9
+
+[node name="voltage_output" type="Node2D"]
+script = ExtResource("1_tvpxx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 882.0
+offset_top = 742.0
+offset_right = 1003.0
+offset_bottom = 765.0
+uppercase = true
+
+[node name="value1" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 773.0
+offset_right = 975.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="value2" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 773.0
+offset_right = 975.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="value3" type="Label" parent="."]
+offset_left = 902.0
+offset_top = 773.0
+offset_right = 975.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="output1" type="Node2D" parent="."]
+
+[node name="voltage_out" type="Line2D" parent="output1"]
+position = Vector2(976, 762.667)
+scale = Vector2(1.53846, 0.888889)
+points = PackedVector2Array(-48, 8, 0, 8, 0, 40, -48, 40)
+closed = true
+width = 2.0
+
+[node name="output_value" type="Label" parent="output1"]
+offset_left = 905.0
+offset_top = 773.0
+offset_right = 945.0
+offset_bottom = 798.0
+theme_override_fonts/font = SubResource("FontVariation_gg02f")
+theme_override_font_sizes/font_size = 42
+
+[node name="Line2D" type="Line2D" parent="output1"]
+points = PackedVector2Array(976, 783, 1170, 783)
+width = 2.0
+
+[node name="output2" type="Node2D" parent="."]
+position = Vector2(0, 29)
+
+[node name="voltage_out" type="Line2D" parent="output2"]
+position = Vector2(976, 762.667)
+scale = Vector2(1.53846, 0.888889)
+points = PackedVector2Array(-48, 8, 0, 8, 0, 40, -48, 40)
+closed = true
+width = 2.0
+
+[node name="output_value" type="Label" parent="output2"]
+offset_left = 905.0
+offset_top = 773.0
+offset_right = 945.0
+offset_bottom = 798.0
+theme_override_fonts/font = SubResource("FontVariation_gg02f")
+theme_override_font_sizes/font_size = 42
+
+[node name="Line2D2" type="Line2D" parent="output2"]
+position = Vector2(1, 1)
+points = PackedVector2Array(976, 783, 1170, 783)
+width = 2.0
+
+[node name="output3" type="Node2D" parent="."]
+position = Vector2(0, 58)
+
+[node name="voltage_out" type="Line2D" parent="output3"]
+position = Vector2(976, 762.667)
+scale = Vector2(1.53846, 0.888889)
+points = PackedVector2Array(-48, 8, 0, 8, 0, 40, -48, 40)
+closed = true
+width = 2.0
+
+[node name="output_value" type="Label" parent="output3"]
+offset_left = 905.0
+offset_top = 773.0
+offset_right = 945.0
+offset_bottom = 798.0
+theme_override_fonts/font = SubResource("FontVariation_gg02f")
+theme_override_font_sizes/font_size = 42
+
+[node name="Line2D3" type="Line2D" parent="output3"]
+position = Vector2(2, 1)
+points = PackedVector2Array(976, 783, 1170, 783)
+width = 2.0
+
+[node name="bitNames" type="Label" parent="."]
+offset_left = 881.0
+offset_top = 861.0
+offset_right = 1027.0
+offset_bottom = 884.0
+rotation = -1.5708
+theme_override_fonts/font = SubResource("FontVariation_ua442")
+theme_override_font_sizes/font_size = 12

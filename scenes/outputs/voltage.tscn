@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://detkdfar4sevt"]
+
+[ext_resource type="Script" path="res://scenes/outputs/voltage.gd" id="1_tvpxx"]
+[ext_resource type="Texture2D" uid="uid://dbxj3i74v3baa" path="res://assets/grid-square.png" id="2_p1bqa"]
+[ext_resource type="FontFile" uid="uid://kkgkkctae5wv" path="res://assets/mallard-smooth.ttf" id="3_bgfoh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yu1ek"]
+texture = ExtResource("2_p1bqa")
+0:0/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ns71d"]
+sources/1 = SubResource("TileSetAtlasSource_yu1ek")
+
+[sub_resource type="FontVariation" id="FontVariation_biloi"]
+base_font = ExtResource("3_bgfoh")
+spacing_glyph = 14
+
+[sub_resource type="FontVariation" id="FontVariation_1j5i8"]
+base_font = ExtResource("3_bgfoh")
+spacing_glyph = 17
+
+[sub_resource type="FontVariation" id="FontVariation_gg02f"]
+base_font = ExtResource("3_bgfoh")
+
+[node name="voltage_output" type="Node2D"]
+script = ExtResource("1_tvpxx")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ns71d")
+format = 2
+layer_0/tile_data = PackedInt32Array(3145765, 1, 0, 3211301, 1, 1, 3145766, 65537, 0, 3211302, 65537, 1, 3145767, 1, 0, 3211303, 1, 1, 3145768, 65537, 0, 3211304, 65537, 1, 3145769, 1, 0, 3211305, 1, 1, 3145770, 65537, 0, 3211306, 65537, 1, 3145771, 1, 0, 3211307, 1, 1, 3145772, 65537, 0, 3211308, 65537, 1, 3145773, 1, 0, 3211309, 1, 1, 3145774, 65537, 0, 3211310, 65537, 1, 3145775, 1, 0, 3211311, 1, 1, 3145776, 65537, 0, 3211312, 65537, 1, 3145777, 1, 0, 3211313, 1, 1, 3145778, 65537, 0, 3211314, 65537, 1, 3145779, 1, 0, 3211315, 1, 1, 3145780, 65537, 0, 3211316, 65537, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 494.0
+offset_top = 773.0
+offset_right = 615.0
+offset_bottom = 796.0
+uppercase = true
+
+[node name="value" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 773.0
+offset_right = 1359.0
+offset_bottom = 800.0
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = SubResource("FontVariation_biloi")
+theme_override_font_sizes/font_size = 47
+
+[node name="value_binary" type="Label" parent="."]
+offset_left = 603.0
+offset_top = 774.0
+offset_right = 992.0
+offset_bottom = 797.0
+theme_override_fonts/font = SubResource("FontVariation_1j5i8")
+theme_override_font_sizes/font_size = 40
+
+[node name="DAC" type="Node2D" parent="."]
+
+[node name="voltage_out" type="Line2D" parent="DAC"]
+position = Vector2(976, 762.667)
+scale = Vector2(1.53846, 0.888889)
+points = PackedVector2Array(-48, 8, 0, 8, 0, 40, -48, 40)
+closed = true
+width = 2.0
+
+[node name="Line2D10" type="Line2D" parent="DAC"]
+position = Vector2(224, 56)
+points = PackedVector2Array(680, 718, 624, 718)
+width = 2.0
+
+[node name="Line2D11" type="Line2D" parent="DAC"]
+position = Vector2(224, 64)
+points = PackedVector2Array(680, 718, 624, 718)
+width = 2.0
+
+[node name="Line2D12" type="Line2D" parent="DAC"]
+position = Vector2(224, 72)
+points = PackedVector2Array(680, 718, 624, 718)
+width = 2.0
+
+[node name="DAC_Label" type="Label" parent="DAC"]
+offset_left = 904.0
+offset_top = 744.0
+offset_right = 944.0
+offset_bottom = 767.0
+text = "DAC"
+
+[node name="DAC_Value" type="Label" parent="DAC"]
+offset_left = 905.0
+offset_top = 773.0
+offset_right = 945.0
+offset_bottom = 798.0
+theme_override_fonts/font = SubResource("FontVariation_gg02f")
+theme_override_font_sizes/font_size = 42
