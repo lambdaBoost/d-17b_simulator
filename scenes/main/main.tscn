@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=22 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
-[ext_resource type="PackedScene" uid="uid://kneiyeccsvov" path="res://scenes/disc-register/disc_register23.tscn" id="1_fo4ia"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
 [ext_resource type="PackedScene" uid="uid://c2x25ywg186p1" path="res://scenes/flip-flop/flipflop5.tscn" id="4_87mqh"]
 [ext_resource type="PackedScene" uid="uid://dv5hf28w6pofc" path="res://scenes/disc-register/disc_register24.tscn" id="4_a4i63"]
@@ -87,28 +86,6 @@ text = "INPUTS"
 [node name="flipflops" type="Node2D" parent="."]
 position = Vector2(0, -48)
 
-[node name="ff-accumulator" parent="flipflops" instance=ExtResource("1_0fj50")]
-position = Vector2(-376, -560)
-register_label = "Accumulator"
-num_registers = 4
-bitnames_label = "A0 A24 A23 Ax"
-
-[node name="link" type="Line2D" parent="flipflops/ff-accumulator"]
-position = Vector2(1112, 798)
-points = PackedVector2Array(-392, 0, 0, 0)
-width = 3.0
-
-[node name="ff-lower-accumulator" parent="flipflops" instance=ExtResource("1_0fj50")]
-position = Vector2(-376, -480)
-register_label = "Lower Accumulator"
-num_registers = 4
-bitnames_label = "Lx Lp L24 L0"
-
-[node name="link" type="Line2D" parent="flipflops/ff-lower-accumulator"]
-position = Vector2(1112, 798)
-points = PackedVector2Array(-392, 0, 0, 0)
-width = 3.0
-
 [node name="ff-number" parent="flipflops" instance=ExtResource("1_0fj50")]
 position = Vector2(-376, -376)
 register_label = "Number"
@@ -118,6 +95,16 @@ bitnames_label = "Np N24 Nx Nc"
 [node name="link" type="Line2D" parent="flipflops/ff-number"]
 position = Vector2(1112, 798)
 points = PackedVector2Array(-392, 0, 0, 0)
+width = 3.0
+
+[node name="link2" type="Line2D" parent="flipflops/ff-number"]
+position = Vector2(1080, 614)
+points = PackedVector2Array(-392, 0, -88, 0)
+width = 3.0
+
+[node name="link3" type="Line2D" parent="flipflops/ff-number"]
+position = Vector2(1080, 694)
+points = PackedVector2Array(-392, 0, -88, 0)
 width = 3.0
 
 [node name="ff-instruction" parent="flipflops" instance=ExtResource("5_26rxo")]
@@ -174,18 +161,18 @@ register_value = 231
 num_registers = 12
 bitnames_label = "B1 B2 B3 B4 B5 B6 Tp Tx To Tp Tx To"
 
+[node name="ff-accumulator" parent="flipflops" instance=ExtResource("5_6nj2o")]
+position = Vector2(-376, -560)
+register_label = "Accumulator"
+bitnames_label = "A0 A23 Ax"
+
+[node name="ff-lower-accumulator" parent="flipflops" instance=ExtResource("5_6nj2o")]
+position = Vector2(-376, -480)
+register_label = "Lower Accumulator"
+bitnames_label = "L0 L23 Lx"
+
 [node name="disk-registers" type="Node2D" parent="."]
 position = Vector2(0, 16)
-
-[node name="disc-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
-position = Vector2(144, -624)
-num_registers = 23
-register_type = "arithmetic"
-
-[node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("1_fo4ia")]
-position = Vector2(144, -544)
-num_registers = 23
-register_type = "arithmetic"
 
 [node name="disc-number" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -440)
@@ -195,8 +182,21 @@ register_type = "arithmetic"
 [node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -360)
 num_registers = 24
-displayed_value = "110100000000000000000001"
+displayed_value = "000000000000100100000010"
 register_type = "instruction"
+
+[node name="disc-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
+position = Vector2(24, -624)
+register_label = "Accumulator"
+register_value = 576
+num_registers = 24
+register_type = "arithmetic"
+
+[node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
+position = Vector2(24, -544)
+register_label = "Lower Accumulator"
+num_registers = 24
+register_type = "arithmetic"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1024, 520)
@@ -420,18 +420,20 @@ bitnames_label = "P1 P2 P3"
 [node name="mappings" type="Node2D" parent="."]
 
 [node name="acc-charOut" type="Line2D" parent="mappings"]
+position = Vector2(-118, -1)
 points = PackedVector2Array(736, 200, 864, 200)
 width = 1.0
 default_color = Color(0.768627, 0.65098, 0, 1)
 
 [node name="Line2D" type="Line2D" parent="mappings"]
-points = PackedVector2Array(800, 200, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 240, 2400, 240)
+position = Vector2(-120, 0)
+points = PackedVector2Array(800, 200, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 240, 2520, 240)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D3" type="Line2D" parent="mappings"]
 position = Vector2(-536, 8)
-points = PackedVector2Array(800, 184, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 408, 2384, 408)
+points = PackedVector2Array(1168, 200, 1168, 216, 1168, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 315.746, 2368, 408, 2384, 408)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
