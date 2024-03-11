@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="20_on05t"]
 [ext_resource type="Script" path="res://scenes/main/execute_button.gd" id="21_5k0l0"]
 [ext_resource type="Script" path="res://scenes/main/program-control.gd" id="22_t38co"]
-[ext_resource type="PackedScene" uid="uid://bw4h8si24pmoe" path="res://scenes/codesheet/code-row.tscn" id="22_ubx3i"]
+[ext_resource type="Script" path="res://scenes/main/add-unflagged.gd" id="23_etel3"]
 
 [node name="main" type="Node2D"]
 
@@ -196,7 +196,7 @@ num_registers = 24
 register_type = "arithmetic"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1112, 2104)
+position = Vector2(960, 2104)
 
 [node name="loops" type="Node2D" parent="."]
 position = Vector2(-32, 40)
@@ -495,6 +495,22 @@ script = ExtResource("21_5k0l0")
 script = ExtResource("22_t38co")
 
 [node name="code-sheet" type="Node2D" parent="."]
+position = Vector2(96, 424)
 
-[node name="Code-row" parent="code-sheet" instance=ExtResource("22_ubx3i")]
-position = Vector2(472, 1912)
+[node name="add-unflagged" type="TextureButton" parent="code-sheet"]
+offset_left = 328.0
+offset_top = 2056.0
+offset_right = 403.0
+offset_bottom = 2096.0
+texture_normal = ExtResource("18_uoexn")
+texture_pressed = ExtResource("19_n4kv3")
+texture_hover = ExtResource("20_on05t")
+script = ExtResource("23_etel3")
+
+[node name="Label" type="Label" parent="code-sheet/add-unflagged"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 10
+text = "Add Unflagged 
+Instruction"
