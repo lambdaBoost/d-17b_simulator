@@ -45,6 +45,9 @@ func _button_pressed():
 		sub()
 	elif operation == '0000' and channel == '10010':
 		als(operand_sector_decimal)
+	elif operation == '0000' and channel == '11010':
+		ars(operand_sector_decimal)
+		
 	
 	
 	
@@ -93,6 +96,19 @@ func als(operand_s):
 	var new_accumulator_binary = current_accumulator_binary.substr(operand_s, (24-operand_s))
 	var trailing_zeros = "0".repeat(operand_s)
 	new_accumulator_binary = new_accumulator_binary + trailing_zeros
+	
+	var new_accumulator = new_accumulator_binary.bin_to_int()
+	accumulator_reg.register_value = new_accumulator
+	
+	
+func ars(operand_s):
+	var current_accumulator = accumulator_reg.register_value
+	var current_accumulator_binary = value_to_binary(current_accumulator, 24)
+
+	
+	var new_accumulator_binary = current_accumulator_binary.substr(0, (24-operand_s))
+	var leading_zeros = "0".repeat(operand_s)
+	new_accumulator_binary = leading_zeros + new_accumulator_binary
 	
 	var new_accumulator = new_accumulator_binary.bin_to_int()
 	accumulator_reg.register_value = new_accumulator

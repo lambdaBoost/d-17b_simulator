@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=23 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="20_on05t"]
 [ext_resource type="Script" path="res://scenes/main/execute_button.gd" id="21_5k0l0"]
 [ext_resource type="Script" path="res://scenes/main/program-control.gd" id="22_t38co"]
+[ext_resource type="PackedScene" uid="uid://bw4h8si24pmoe" path="res://scenes/codesheet/code-row.tscn" id="22_ubx3i"]
 
 [node name="main" type="Node2D"]
 
@@ -163,12 +164,10 @@ bitnames_label = "B1 B2 B3 B4 B5 B6 Tp Tx To Tp Tx To"
 
 [node name="ff-accumulator" parent="flipflops" instance=ExtResource("5_6nj2o")]
 position = Vector2(-376, -560)
-register_label = "Accumulator"
 bitnames_label = "A0 A23 Ax"
 
 [node name="ff-lower-accumulator" parent="flipflops" instance=ExtResource("5_6nj2o")]
 position = Vector2(-376, -480)
-register_label = "Lower Accumulator"
 bitnames_label = "L0 L23 Lx"
 
 [node name="disk-registers" type="Node2D" parent="."]
@@ -182,67 +181,53 @@ register_type = "arithmetic"
 [node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(144, -360)
 num_registers = 24
-displayed_value = "000000000000100100000010"
+displayed_value = "000000000000110100000010"
 register_type = "instruction"
 
 [node name="disc-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(24, -624)
-register_label = "Accumulator"
 register_value = 576
 num_registers = 24
 register_type = "arithmetic"
 
 [node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(24, -544)
-register_label = "Lower Accumulator"
 num_registers = 24
 register_type = "arithmetic"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1024, 520)
+position = Vector2(1112, 2104)
 
 [node name="loops" type="Node2D" parent="."]
 position = Vector2(-32, 40)
 
 [node name="U-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 472)
-register_label = "U-LOOP"
-channel_label = "60"
 num_registers = 25
 num_sectors = 1
 
 [node name="F-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 552)
-register_label = "F-LOOP"
-channel_label = "52"
 num_registers = 25
 num_sectors = 4
 
 [node name="V-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 632)
-register_label = "V-LOOP (input)"
-channel_label = "70"
 num_registers = 25
 num_sectors = 4
 
 [node name="R-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 712)
-register_label = "R-LOOP (input)c "
-channel_label = "72"
 num_registers = 25
 num_sectors = 4
 
 [node name="E-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 792)
-register_label = "E-LOOP"
-channel_label = "56"
 num_registers = 25
 num_sectors = 8
 
 [node name="H-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 872)
-register_label = "H-LOOP"
-channel_label = "54"
 num_registers = 25
 num_sectors = 16
 
@@ -251,87 +236,86 @@ position = Vector2(-56, 424)
 
 [node name="channel00" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1344)
-channel_label = "00"
+channel_label = 0
 
 [node name="channel02" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1312)
-channel_label = "02"
+channel_label = 1
 
 [node name="channel04" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1280)
-channel_label = "04"
+channel_label = 2
 
 [node name="channel06" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1248)
-channel_label = "06"
+channel_label = 3
 
 [node name="channel10" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1216)
-channel_label = "10"
 
 [node name="channel12" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1184)
-channel_label = "12"
+channel_label = 5
 
 [node name="channel14" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1152)
-channel_label = "14"
+channel_label = 6
 
 [node name="channel16" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1120)
-channel_label = "16"
+channel_label = 7
 
 [node name="channel20" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1088)
-channel_label = "20"
+channel_label = 8
 
 [node name="channel22" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1056)
-channel_label = "22"
+channel_label = 9
 
 [node name="channel24" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1024)
-channel_label = "24"
+channel_label = 10
 
 [node name="channel26" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 992)
-channel_label = "26"
+channel_label = 11
 
 [node name="channel30" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 960)
-channel_label = "30"
+channel_label = 12
 
 [node name="channel32" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 928)
-channel_label = "32"
+channel_label = 13
 
 [node name="channel34" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 896)
-channel_label = "34"
+channel_label = 14
 
 [node name="channel36" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 864)
-channel_label = "36"
+channel_label = 15
 
 [node name="channel40" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 832)
-channel_label = "40"
+channel_label = 16
 
 [node name="channel42" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 800)
-channel_label = "42"
+channel_label = 17
 
 [node name="channel44" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 768)
-channel_label = "44"
+channel_label = 18
 
 [node name="channel46" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 736)
-channel_label = "46"
+channel_label = 19
 
 [node name="channel50" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 704)
-channel_label = "50"
+channel_label = 20
 
 [node name="background" type="Node2D" parent="."]
 
@@ -509,3 +493,8 @@ script = ExtResource("21_5k0l0")
 
 [node name="program-control" type="Node2D" parent="."]
 script = ExtResource("22_t38co")
+
+[node name="code-sheet" type="Node2D" parent="."]
+
+[node name="Code-row" parent="code-sheet" instance=ExtResource("22_ubx3i")]
+position = Vector2(472, 1912)

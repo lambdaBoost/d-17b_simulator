@@ -24,6 +24,7 @@ spacing_glyph = 14
 
 [node name="disc-register27" type="Node2D"]
 script = ExtResource("1_cehh3")
+channel_label = 4
 num_registers = 27
 num_sectors = 128
 

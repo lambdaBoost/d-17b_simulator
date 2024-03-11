@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var register_label: String
-@export var channel_label: String
+@export var channel_label: int
 @export var register_values: Array
 @export var num_registers: int
 @export var num_sectors: int
@@ -10,11 +9,11 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	var label = get_node("Label")
-	label.text = register_label
+	#var label = get_node("Label")
+	#label.text = register_label
 	
 	var channel_label_node = get_node("channel_label")
-	channel_label_node.text = channel_label
+	channel_label_node.text = str(channel_label)
 		
 	add_sectors(num_sectors)
 	initialise_values(num_sectors)
