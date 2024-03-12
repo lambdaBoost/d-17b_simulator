@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=26 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cqpvxwodgiega" path="res://scenes/disc-register/disc_register25.tscn" id="9_178ai"]
 [ext_resource type="Script" path="res://scenes/main/sectorSelect.gd" id="9_kktwa"]
 [ext_resource type="PackedScene" uid="uid://cfcs5o3waocjq" path="res://scenes/disc-register/disc_register27.tscn" id="10_08kvm"]
+[ext_resource type="PackedScene" uid="uid://cljmom775be5h" path="res://scenes/codesheet/value-input.tscn" id="10_i4odh"]
 [ext_resource type="PackedScene" uid="uid://dwsgd2dxxq3us" path="res://scenes/outputs/discrete_out.tscn" id="11_mr1lq"]
 [ext_resource type="PackedScene" uid="uid://detkdfar4sevt" path="res://scenes/outputs/voltage.tscn" id="12_sow7b"]
 [ext_resource type="PackedScene" uid="uid://cc4mtk2a72hli" path="res://scenes/outputs/character_out.tscn" id="13_wovrm"]
@@ -23,6 +24,7 @@
 [ext_resource type="Script" path="res://scenes/main/execute_button.gd" id="21_5k0l0"]
 [ext_resource type="Script" path="res://scenes/main/program-control.gd" id="22_t38co"]
 [ext_resource type="Script" path="res://scenes/main/add-unflagged.gd" id="23_etel3"]
+[ext_resource type="Script" path="res://scenes/main/save-to-mem.gd" id="25_8s5yp"]
 
 [node name="main" type="Node2D"]
 
@@ -247,86 +249,86 @@ memory_type = "loop"
 [node name="mainMemory" type="Node2D" parent="."]
 position = Vector2(-56, 472)
 
-[node name="channel00" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel0" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1344)
 channel_label = 0
 
-[node name="channel02" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel1" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1312)
 channel_label = 1
 
-[node name="channel04" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel2" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1280)
 channel_label = 2
 
-[node name="channel06" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel3" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1248)
 channel_label = 3
 
-[node name="channel10" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel4" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1216)
 
-[node name="channel12" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel5" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1184)
 channel_label = 5
 
-[node name="channel14" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel6" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1152)
 channel_label = 6
 
-[node name="channel16" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel7" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1120)
 channel_label = 7
 
-[node name="channel20" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel8" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1088)
 channel_label = 8
 
-[node name="channel22" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel9" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1056)
 channel_label = 9
 
-[node name="channel24" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel10" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1024)
 channel_label = 10
 
-[node name="channel26" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel11" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 992)
 channel_label = 11
 
-[node name="channel30" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel12" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 960)
 channel_label = 12
 
-[node name="channel32" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel13" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 928)
 channel_label = 13
 
-[node name="channel34" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel14" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 896)
 channel_label = 14
 
-[node name="channel36" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel15" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 864)
 channel_label = 15
 
-[node name="channel40" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel16" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 832)
 channel_label = 16
 
-[node name="channel42" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel17" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 800)
 channel_label = 17
 
-[node name="channel44" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel18" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 768)
 channel_label = 18
 
-[node name="channel46" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel19" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 736)
 channel_label = 19
 
-[node name="channel50" parent="mainMemory" instance=ExtResource("10_08kvm")]
+[node name="channel20" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 704)
 channel_label = 20
 
@@ -343,6 +345,9 @@ offset_left = -64.0
 offset_right = -4.0
 offset_bottom = 23.0
 text = "SECTOR"
+
+[node name="Value-input" parent="mainMemory" instance=ExtResource("10_i4odh")]
+position = Vector2(1672, 1688)
 
 [node name="background" type="Node2D" parent="."]
 
@@ -541,3 +546,21 @@ offset_bottom = 31.0
 theme_override_font_sizes/font_size = 10
 text = "Add Unflagged 
 Instruction"
+
+[node name="save-to-mem" type="TextureButton" parent="code-sheet"]
+offset_left = 424.0
+offset_top = 2056.0
+offset_right = 499.0
+offset_bottom = 2096.0
+texture_normal = ExtResource("18_uoexn")
+texture_pressed = ExtResource("19_n4kv3")
+texture_hover = ExtResource("20_on05t")
+script = ExtResource("25_8s5yp")
+
+[node name="Label" type="Label" parent="code-sheet/save-to-mem"]
+layout_mode = 0
+offset_right = 71.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 10
+text = "Save to
+Memory"
