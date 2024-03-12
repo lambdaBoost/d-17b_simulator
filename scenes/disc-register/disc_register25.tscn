@@ -62,14 +62,14 @@ theme_override_fonts/font = SubResource("FontVariation_1j5i8")
 theme_override_font_sizes/font_size = 40
 
 [node name="OptionButton" type="OptionButton" parent="."]
-offset_left = 1504.0
+offset_left = 1712.0
 offset_top = 768.0
-offset_right = 1549.0
+offset_right = 1757.0
 offset_bottom = 788.0
 
 [node name="Label" type="Label" parent="OptionButton"]
 layout_mode = 0
-offset_top = -32.0
-offset_right = 50.0
-offset_bottom = -9.0
+offset_left = -56.0
+offset_right = -6.0
+offset_bottom = 23.0
 text = "WORD"

@@ -4,6 +4,8 @@ extends Node2D
 @export var register_values: Array
 @export var num_registers: int
 @export var num_sectors: int
+@export var memory_type: String
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,8 +17,16 @@ func _ready():
 	var channel_label_node = get_node("channel_label")
 	channel_label_node.text = str(channel_label)
 		
-	add_sectors(num_sectors)
-	initialise_values(num_sectors)
+	
+	if memory_type == "loop":
+		add_sectors(num_sectors)
+		initialise_values(num_sectors)
+		
+	else:
+		var dropdown_node = get_node("OptionButton")
+		remove_child(dropdown_node)
+		
+		initialise_values(num_sectors)
 	
 	
 
@@ -25,10 +35,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	var value = update_displayed_value()
-	var register_binary = value_to_binary(value)
-	var register_binary_label = get_node("displayed_value")
-	register_binary_label.text = register_binary
+	if memory_type == 'loop':
+		var value = update_loop_displayed_value()
+		var register_binary = value_to_binary(value)
+		var register_binary_label = get_node("displayed_value")
+		register_binary_label.text = register_binary
+	else:
+		var value = update_mainmem_displayed_value()
+		var register_binary = value_to_binary(value)
+		var register_binary_label = get_node("displayed_value")
+		register_binary_label.text = register_binary
 	
 	
 	
@@ -36,7 +52,7 @@ func _process(delta):
 func value_to_binary(value):
 	
 	if value == 0:
-		return "0"
+		return "0".repeat(num_registers)
 		
 	
 	else:	
@@ -44,6 +60,9 @@ func value_to_binary(value):
 		while (value > 0):
 			ret_str = str(value&1) + ret_str
 			value = (value>>1)
+			
+		while ret_str.length() < num_registers:
+			ret_str = "0" + ret_str
 		return ret_str
 		
 		
@@ -55,9 +74,17 @@ func add_sectors(value):
 		sector_options.add_item(str(i),i+1)
 		
 		
-func update_displayed_value():
+func update_loop_displayed_value():
 	
 	var sector_options = get_node("OptionButton")
+	var selected_sector = sector_options.get_selected_id()
+	
+	var decimal_value_to_display = register_values[selected_sector-1]
+	return decimal_value_to_display
+	
+func update_mainmem_displayed_value():
+	
+	var sector_options = get_node("../sectorSelect")
 	var selected_sector = sector_options.get_selected_id()
 	
 	var decimal_value_to_display = register_values[selected_sector-1]
