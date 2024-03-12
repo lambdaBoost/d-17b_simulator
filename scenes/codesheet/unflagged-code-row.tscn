@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw4h8si24pmoe"]
+
+[ext_resource type="Script" path="res://scenes/codesheet/unflagged-code-row.gd" id="1_dbvsj"]
+
+[node name="Code-row" type="Node2D"]
+position = Vector2(-20, 1250)
+script = ExtResource("1_dbvsj")
+
+[node name="current_channel" type="OptionButton" parent="."]
+offset_left = -74.0
+offset_right = -29.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="current_channel"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 43.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 9
+text = "CHANNEL"
+
+[node name="current_sector" type="OptionButton" parent="."]
+offset_left = -3.0
+offset_right = 42.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="current_sector"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 43.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 9
+text = "SECTOR"
+
+[node name="opcodes" type="OptionButton" parent="."]
+offset_left = 64.0
+offset_right = 109.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="opcodes"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 9
+text = "OP"
+
+[node name="flag" type="OptionButton" parent="."]
+offset_left = 160.0
+offset_right = 205.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="flag"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 9
+text = "Flag"
+
+[node name="next_sector" type="OptionButton" parent="."]
+offset_left = 240.0
+offset_right = 285.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="next_sector"]
+layout_mode = 0
+offset_top = -32.0
+offset_right = 71.0
+offset_bottom = -3.0
+theme_override_font_sizes/font_size = 9
+text = "Next instruction
+Sector"
+
+[node name="operand_channel" type="OptionButton" parent="."]
+offset_left = 328.0
+offset_right = 373.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="operand_channel"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 9
+text = "Operand Channel"
+
+[node name="operand_sector" type="OptionButton" parent="."]
+offset_left = 420.0
+offset_right = 465.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="operand_sector"]
+layout_mode = 0
+offset_top = -16.0
+offset_right = 40.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 9
+text = "Operand Sector"

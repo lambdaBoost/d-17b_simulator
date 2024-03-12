@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cljmom775be5h"]
+
+[ext_resource type="Script" path="res://scenes/codesheet/value-input.gd" id="1_psxut"]
+[ext_resource type="Texture2D" uid="uid://3hch4eskpb75" path="res://assets/button_normal.png" id="2_wargm"]
+[ext_resource type="Texture2D" uid="uid://sq3b6qrbif2n" path="res://assets/button_pressed.png" id="3_5e3wv"]
+[ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="4_wwymf"]
+[ext_resource type="Script" path="res://scenes/codesheet/add-value-to-mem.gd" id="5_vbvd6"]
+[ext_resource type="Script" path="res://scenes/main/channelSelect.gd" id="6_w3lv1"]
+
+[node name="Value-input" type="Node2D"]
+script = ExtResource("1_psxut")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_top = 56.0
+offset_right = 67.0625
+offset_bottom = 87.0
+text = "1101011"
+max_length = 24
+expand_to_text_length = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_wargm")
+texture_pressed = ExtResource("3_5e3wv")
+texture_hover = ExtResource("4_wwymf")
+script = ExtResource("5_vbvd6")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 61.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 11
+text = "Add to 
+memory"
+
+[node name="channelSelect" type="OptionButton" parent="."]
+offset_left = 128.0
+offset_top = 8.0
+offset_right = 173.0
+offset_bottom = 28.0
+script = ExtResource("6_w3lv1")
+
+[node name="Label" type="Label" parent="channelSelect"]
+layout_mode = 0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = -9.0
+text = "Channel"
