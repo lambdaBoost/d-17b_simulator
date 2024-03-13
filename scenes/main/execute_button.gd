@@ -54,6 +54,9 @@ func _button_pressed():
 	#load operand to number register
 	load_value_from_mem(operand_channel, operand_sector)
 	
+	#set global variable for next sector
+	load_next_sector()
+	
 	#execute instruction. this is an inelegant way of doing it....but cant store functions
 	#as dict in godot, and cant use decorators
 	if operation == '1001':
@@ -65,13 +68,12 @@ func _button_pressed():
 	elif operation == '1111':
 		sub()
 	elif operation == '0000' and operand_channel_binary == '10010':
-		als(operand_sector)
+		als()
 	elif operation == '0000' and operand_channel_binary == '11010':
-		ars(operand_sector)
+		ars()
+	elif operation == '1010':
+		tra()
 		
-	#set global variable for next sector
-	load_next_sector()
-	
 	
 
 func load_first_instruction():
@@ -146,32 +148,35 @@ func sub():
 	var new_accumulator = current_accumulator - operand
 	accumulator_reg.register_value = new_accumulator
 	
-func als(operand_s):
+func als():
 	var current_accumulator = accumulator_reg.register_value
 	var current_accumulator_binary = value_to_binary(current_accumulator, 24)
 
 	
-	var new_accumulator_binary = current_accumulator_binary.substr(operand_s, (24-operand_s))
-	var trailing_zeros = "0".repeat(operand_s)
+	var new_accumulator_binary = current_accumulator_binary.substr(operand_sector, (24-operand_sector))
+	var trailing_zeros = "0".repeat(operand_sector)
 	new_accumulator_binary = new_accumulator_binary + trailing_zeros
 	
 	var new_accumulator = new_accumulator_binary.bin_to_int()
 	accumulator_reg.register_value = new_accumulator
 	
 	
-func ars(operand_s):
+func ars():
 	var current_accumulator = accumulator_reg.register_value
 	var current_accumulator_binary = value_to_binary(current_accumulator, 24)
 
 	
-	var new_accumulator_binary = current_accumulator_binary.substr(0, (24-operand_s))
-	var leading_zeros = "0".repeat(operand_s)
+	var new_accumulator_binary = current_accumulator_binary.substr(0, (24-operand_sector))
+	var leading_zeros = "0".repeat(operand_sector)
 	new_accumulator_binary = leading_zeros + new_accumulator_binary
 	
 	var new_accumulator = new_accumulator_binary.bin_to_int()
 	accumulator_reg.register_value = new_accumulator
 	
 	
+func tra():
+	next_instruction_sector = operand_sector
+	next_instruction_channel = operand_channel
 	
 	
 	
