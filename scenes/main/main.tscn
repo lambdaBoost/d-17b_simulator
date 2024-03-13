@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=27 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3g7wdafgr3w1" path="res://scenes/flip-flop/flipflop3.tscn" id="5_6nj2o"]
 [ext_resource type="PackedScene" uid="uid://dnglsxovw2ru6" path="res://scenes/flip-flop/flipflop2.tscn" id="5_26rxo"]
 [ext_resource type="PackedScene" uid="uid://bsut3nmi7dp1" path="res://scenes/flip-flop/flipflop12.tscn" id="6_1uquu"]
+[ext_resource type="Script" path="res://scenes/main/Camera2D.gd" id="7_xa5o7"]
 [ext_resource type="PackedScene" uid="uid://cqpvxwodgiega" path="res://scenes/disc-register/disc_register25.tscn" id="9_178ai"]
 [ext_resource type="Script" path="res://scenes/main/sectorSelect.gd" id="9_kktwa"]
 [ext_resource type="PackedScene" uid="uid://cfcs5o3waocjq" path="res://scenes/disc-register/disc_register27.tscn" id="10_08kvm"]
@@ -31,9 +32,9 @@
 [node name="labels" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="labels"]
-offset_left = 1144.0
+offset_left = 832.0
 offset_top = 72.0
-offset_right = 1211.0
+offset_right = 899.0
 offset_bottom = 114.0
 theme_override_font_sizes/font_size = 30
 text = "DISK"
@@ -123,13 +124,13 @@ points = PackedVector2Array(-457, 0, 0, 0)
 width = 3.0
 
 [node name="ff-op-buffer" parent="flipflops" instance=ExtResource("1_0fj50")]
-position = Vector2(-376, 104)
+position = Vector2(-376, 8)
 register_label = "OPERATIONS BUFFER"
 num_registers = 4
 bitnames_label = "Ip Ob3 Ob2 Ob1"
 
 [node name="ff-op-store" parent="flipflops" instance=ExtResource("1_0fj50")]
-position = Vector2(-376, 184)
+position = Vector2(-376, 64)
 register_label = "OPERATION STORE"
 num_registers = 4
 bitnames_label = "O4 O3 O2 O1"
@@ -141,25 +142,25 @@ num_registers = 5
 bitnames_label = "Cb5 Cb4 Cb3 Cb2 Cb1"
 
 [node name="ff-ch-store" parent="flipflops" instance=ExtResource("4_87mqh")]
-position = Vector2(-376, -136)
+position = Vector2(-376, -160)
 register_label = "Channel Store"
 num_registers = 5
 bitnames_label = "C5 C4 C3 C2 C1"
 
 [node name="ff-flag-code-buffer" parent="flipflops" instance=ExtResource("5_6nj2o")]
-position = Vector2(-376, -56)
+position = Vector2(-376, -104)
 register_label = "Flag Code Buffer"
 num_registers = 3
 bitnames_label = "Sb3 Sb2 Sb1"
 
 [node name="ff-flag-code-store" parent="flipflops" instance=ExtResource("5_6nj2o")]
-position = Vector2(-376, 24)
+position = Vector2(-376, -48)
 register_label = "Flag Code Buffer"
 num_registers = 3
 bitnames_label = "S3 S2 S1"
 
 [node name="ff-bit-counter" parent="flipflops" instance=ExtResource("6_1uquu")]
-position = Vector2(-376, 264)
+position = Vector2(-376, 120)
 register_label = "Bit Counter"
 register_value = 231
 num_registers = 12
@@ -167,39 +168,41 @@ bitnames_label = "B1 B2 B3 B4 B5 B6 Tp Tx To Tp Tx To"
 
 [node name="ff-accumulator" parent="flipflops" instance=ExtResource("5_6nj2o")]
 position = Vector2(-376, -560)
+register_label = "Accumulator"
 bitnames_label = "A0 A23 Ax"
 
 [node name="ff-lower-accumulator" parent="flipflops" instance=ExtResource("5_6nj2o")]
 position = Vector2(-376, -480)
+register_label = "L. Accumulator"
 bitnames_label = "L0 L23 Lx"
 
 [node name="disk-registers" type="Node2D" parent="."]
 position = Vector2(0, 16)
 
 [node name="disc-number" parent="disk-registers" instance=ExtResource("4_a4i63")]
-position = Vector2(144, -440)
+position = Vector2(-160, -440)
 num_registers = 24
 register_type = "arithmetic"
 
 [node name="disc-instruction" parent="disk-registers" instance=ExtResource("4_a4i63")]
-position = Vector2(144, -360)
+position = Vector2(-160, -360)
 num_registers = 24
-displayed_value = "000000000000110100000010"
 register_type = "instruction"
 
 [node name="disc-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
-position = Vector2(24, -624)
+position = Vector2(-192, -624)
 register_value = 576
 num_registers = 24
 register_type = "arithmetic"
 
 [node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
-position = Vector2(24, -544)
+position = Vector2(-192, -544)
 num_registers = 24
 register_type = "arithmetic"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 2104)
+position = Vector2(960, 544)
+script = ExtResource("7_xa5o7")
 
 [node name="loops" type="Node2D" parent="."]
 position = Vector2(-56, 192)
@@ -353,38 +356,39 @@ position = Vector2(1672, 1688)
 
 [node name="ColorRect" type="ColorRect" parent="background"]
 z_index = -1
-offset_left = 648.0
-offset_right = 688.0
-offset_bottom = 40.0
-scale = Vector2(23.4, 68.308)
+offset_left = 432.0
+offset_top = -16.0
+offset_right = 472.0
+offset_bottom = 21.0
+scale = Vector2(20, 13.456)
 color = Color(0, 0.109804, 0.14902, 1)
 
 [node name="outputs" type="Node2D" parent="."]
 position = Vector2(1032, 224)
 
 [node name="discrete-out" parent="outputs" instance=ExtResource("11_mr1lq")]
-position = Vector2(0, 24)
+position = Vector2(-616, 24)
 hi_output = 5
 
 [node name="voltage1" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(144, -296)
+position = Vector2(-352, -224)
 register_label = "VOLTAGE 1"
 
 [node name="voltage2" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(144, -224)
+position = Vector2(-352, -152)
 register_label = "VOLTAGE 2"
 
 [node name="voltage3" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(144, -152)
+position = Vector2(-352, -80)
 register_label = "VOLTAGE 3"
 
 [node name="character_out" parent="outputs" instance=ExtResource("13_wovrm")]
-position = Vector2(640, 672)
+position = Vector2(24, 608)
 register_label = "CHARACTER OUTPUT"
 bitnames_label = "Sc1 Sc2 Sc3 Sc4 Sc5"
 
 [node name="G1" parent="outputs" instance=ExtResource("1_i6vw8")]
-position = Vector2(264, -624)
+position = Vector2(-240, -672)
 num_registers = 1
 bitnames_label = "G1"
 
@@ -396,39 +400,39 @@ offset_bottom = 751.0
 text = "G-registers"
 
 [node name="G2" parent="outputs" instance=ExtResource("1_i6vw8")]
-position = Vector2(264, -592)
+position = Vector2(-240, -640)
 num_registers = 1
 bitnames_label = "G2"
 
 [node name="G3" parent="outputs" instance=ExtResource("1_i6vw8")]
-position = Vector2(264, -560)
+position = Vector2(-240, -608)
 num_registers = 1
 bitnames_label = "G3"
 
 [node name="binary_out" parent="outputs" instance=ExtResource("14_veons")]
-position = Vector2(640, 904)
+position = Vector2(24, 840)
 register_label = "BINARY OUT"
 bitnames_label = "G31 G30 G21 G20 G11 G10"
 
 [node name="voltage_output1" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(488, -400)
+position = Vector2(-152, -488)
 register_label = "VOLTAGE OUT"
 bitnames_label = "V30 V20 V10"
 
 [node name="voltage_output2" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(488, -296)
+position = Vector2(-152, -360)
 bitnames_label = "V31 V21 V11"
 
 [node name="voltage_output3" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(488, -192)
+position = Vector2(-152, -232)
 bitnames_label = "V32 V22 V12"
 
 [node name="voltage_output4" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(488, -88)
+position = Vector2(-152, -104)
 bitnames_label = "V33 V23 V13"
 
-[node name="flipflop" parent="outputs" instance=ExtResource("5_6nj2o")]
-position = Vector2(504, -400)
+[node name="phase-register" parent="outputs" instance=ExtResource("5_6nj2o")]
+position = Vector2(-352, -312)
 register_label = "PHASE REGISTER"
 num_registers = 3
 bitnames_label = "P1 P2 P3"
@@ -437,67 +441,67 @@ bitnames_label = "P1 P2 P3"
 
 [node name="acc-charOut" type="Line2D" parent="mappings"]
 position = Vector2(-118, -1)
-points = PackedVector2Array(736, 200, 864, 200)
+points = PackedVector2Array(518, 201, 646, 201)
 width = 1.0
 default_color = Color(0.768627, 0.65098, 0, 1)
 
 [node name="Line2D" type="Line2D" parent="mappings"]
 position = Vector2(-120, 0)
-points = PackedVector2Array(800, 200, 800, 216, 832, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 240, 2520, 240)
+points = PackedVector2Array(584, 200, 584, 216, 832, 216, 1536, 216, 1760, 216, 1856, 216, 1856, 168, 1888, 168)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D3" type="Line2D" parent="mappings"]
 position = Vector2(-536, 8)
-points = PackedVector2Array(1168, 200, 1168, 216, 1168, 216, 1536, 216, 1920, 216, 2368, 216, 2368, 315.746, 2368, 408, 2384, 408)
+points = PackedVector2Array(952, 200, 952, 216, 1168, 216, 1536, 216, 1856, 216, 1856, 240, 1856, 312, 1856, 360, 1880, 360)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D2" type="Line2D" parent="mappings"]
 position = Vector2(0, -64)
-points = PackedVector2Array(2400, 240, 2400, 368)
+points = PackedVector2Array(1768, 184, 1768, 304)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D4" type="Line2D" parent="mappings"]
 position = Vector2(-552, 112)
-points = PackedVector2Array(2400, 256, 2400, 352)
+points = PackedVector2Array(1896, 208, 1896, 304)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D6" type="Line2D" parent="mappings"]
 position = Vector2(-463, 113)
-points = PackedVector2Array(2400, 256, 2400, 352)
+points = PackedVector2Array(1927, 207, 1927, 303)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D10" type="Line2D" parent="mappings"]
-position = Vector2(-224, 488)
-points = PackedVector2Array(2400, 208, 2400, 384)
+position = Vector2(-839, 561)
+points = PackedVector2Array(2527, 207, 2527, 383)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D7" type="Line2D" parent="mappings"]
 position = Vector2(-55, 113)
-points = PackedVector2Array(2399, 231, 2399, 423)
+points = PackedVector2Array(1847, 167, 1847, 351)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D9" type="Line2D" parent="mappings"]
-position = Vector2(-40, 456)
-points = PackedVector2Array(2400, 144, 2400, 528)
+position = Vector2(-655, 529)
+points = PackedVector2Array(2399, -9, 2399, 439)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D5" type="Line2D" parent="mappings"]
 position = Vector2(-7, -79)
-points = PackedVector2Array(1944, 496, 2352, 496)
+points = PackedVector2Array(1471, 447, 1799, 447)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D8" type="Line2D" parent="mappings"]
-position = Vector2(56, 288)
-points = PackedVector2Array(2120, 496, 2304, 496)
+position = Vector2(-559, 361)
+points = PackedVector2Array(2239, 495, 2304, 496)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
@@ -513,10 +517,10 @@ position = Vector2(-1360, -608)
 register_label = "DISCRETE INPUT B"
 num_registers = 24
 
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 1424.0
+[node name="Run" type="TextureButton" parent="."]
+offset_left = 856.0
 offset_top = 960.0
-offset_right = 1499.0
+offset_right = 931.0
 offset_bottom = 1000.0
 texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
