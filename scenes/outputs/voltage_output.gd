@@ -18,8 +18,6 @@ func _ready():
 	bitnames_node.text = bitnames_label
 	
 
-	
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

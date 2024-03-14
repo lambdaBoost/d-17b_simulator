@@ -177,12 +177,9 @@ func get_operand_channel(row):
 		return selected_operand_channel_binary
 	
 
+func value_to_binary(value_in, num_registers):
 	
-
-
-
-
-func value_to_binary(value, num_registers):
+	var value = abs(value_in)
 	
 	if value == 0:
 		return "0".repeat(num_registers)
@@ -194,6 +191,19 @@ func value_to_binary(value, num_registers):
 			ret_str = str(value&1) + ret_str
 			value = (value>>1)
 			
-		while ret_str.length() < num_registers:
+		#this covers the case where instructions are sent to the i-register
+		#may cause issues later with arithmetic operations (might not though)	
+		if ret_str.length() == num_registers:
+			return ret_str
+			
+		while ret_str.length() < num_registers-1:
 			ret_str = "0" + ret_str
+					
+		
+		if value_in < 0:
+			ret_str = "1" + ret_str
+		else:
+			ret_str = "0" + ret_str
+			
+
 		return ret_str

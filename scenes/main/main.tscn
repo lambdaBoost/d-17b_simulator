@@ -190,7 +190,7 @@ num_registers = 24
 register_type = "instruction"
 
 [node name="disc-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
-position = Vector2(-192, -624)
+position = Vector2(-192, -621)
 num_registers = 24
 register_type = "arithmetic"
 

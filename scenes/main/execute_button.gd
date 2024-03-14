@@ -67,9 +67,9 @@ func _button_pressed():
 		mpy()
 	elif operation == '1111':
 		sub()
-	elif operation == '0000' and operand_channel_binary == '10010':
+	elif operation == '0000' and operand_channel_binary == '01011':
 		als()
-	elif operation == '0000' and operand_channel_binary == '11010':
+	elif operation == '0000' and operand_channel_binary == '10000':
 		ars()
 	elif operation == '1010':
 		tra()
@@ -146,18 +146,22 @@ func sub():
 	
 	var current_accumulator = accumulator_reg.register_value
 	var new_accumulator = current_accumulator - operand
+	print(new_accumulator)
 	accumulator_reg.register_value = new_accumulator
 	
 func als():
 	var current_accumulator = accumulator_reg.register_value
+	print(current_accumulator)
 	var current_accumulator_binary = value_to_binary(current_accumulator, 24)
-
+	print(current_accumulator_binary)
 	
-	var new_accumulator_binary = current_accumulator_binary.substr(operand_sector, (24-operand_sector))
+	var new_accumulator_binary = current_accumulator_binary.substr(operand_sector +1 , (24-operand_sector))
+	var sign_bit = current_accumulator_binary.substr(0,1)
 	var trailing_zeros = "0".repeat(operand_sector)
-	new_accumulator_binary = new_accumulator_binary + trailing_zeros
-	
-	var new_accumulator = new_accumulator_binary.bin_to_int()
+	new_accumulator_binary = sign_bit + new_accumulator_binary + trailing_zeros
+	print(new_accumulator_binary)
+	var new_accumulator = signed_bin_to_int(new_accumulator_binary)
+	print(new_accumulator)
 	accumulator_reg.register_value = new_accumulator
 	
 	
@@ -166,11 +170,12 @@ func ars():
 	var current_accumulator_binary = value_to_binary(current_accumulator, 24)
 
 	
-	var new_accumulator_binary = current_accumulator_binary.substr(0, (24-operand_sector))
+	var new_accumulator_binary = current_accumulator_binary.substr(1, (24-operand_sector))
+	var sign_bit = current_accumulator_binary.substr(0,1)
 	var leading_zeros = "0".repeat(operand_sector)
-	new_accumulator_binary = leading_zeros + new_accumulator_binary
+	new_accumulator_binary = sign_bit + leading_zeros + new_accumulator_binary
 	
-	var new_accumulator = new_accumulator_binary.bin_to_int()
+	var new_accumulator = signed_bin_to_int(new_accumulator_binary)
 	accumulator_reg.register_value = new_accumulator
 	
 	
@@ -181,10 +186,12 @@ func tra():
 	
 	
 	
-func value_to_binary(value, n_regs):
+func value_to_binary(value_in, num_registers):
+	
+	var value = abs(value_in)
 	
 	if value == 0:
-		return "0".repeat(n_regs)
+		return "0".repeat(num_registers)
 		
 	
 	else:	
@@ -192,12 +199,40 @@ func value_to_binary(value, n_regs):
 		while (value > 0):
 			ret_str = str(value&1) + ret_str
 			value = (value>>1)
+			
+		#this covers the case where instructions are sent to the i-register
+		#may cause issues later with arithmetic operations (might not though)	
+		if ret_str.length() == num_registers:
+			return ret_str
+			
+		while ret_str.length() < num_registers-1:
+			ret_str = "0" + ret_str
+					
 		
-		while ret_str.length() < n_regs:
+		if value_in < 0:
+			ret_str = "1" + ret_str
+		else:
 			ret_str = "0" + ret_str
 			
+
 		return ret_str
 
 	
+func signed_bin_to_int(b_string):
+	"""
+	dedicated function required to return negative cases
+	"""
 	
+	var str_length = b_string.length()
+	
+	#negative_case
+	if b_string[0] == '1':
+		var modified_string = b_string.right(str_length-1)
+		modified_string = '-0b'+modified_string
+		var int_out = modified_string.bin_to_int()
+		return int_out
+		
+	else:
+		var int_out = b_string.bin_to_int()
+		return int_out
 	
