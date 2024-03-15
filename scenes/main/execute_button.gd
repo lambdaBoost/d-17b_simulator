@@ -73,6 +73,8 @@ func _button_pressed():
 		ars()
 	elif operation == '1010':
 		tra()
+	elif operation == '0010':
+		tmi()
 		
 	
 
@@ -151,17 +153,15 @@ func sub():
 	
 func als():
 	var current_accumulator = accumulator_reg.register_value
-	print(current_accumulator)
 	var current_accumulator_binary = value_to_binary(current_accumulator, 24)
-	print(current_accumulator_binary)
+	
 	
 	var new_accumulator_binary = current_accumulator_binary.substr(operand_sector +1 , (24-operand_sector))
 	var sign_bit = current_accumulator_binary.substr(0,1)
 	var trailing_zeros = "0".repeat(operand_sector)
 	new_accumulator_binary = sign_bit + new_accumulator_binary + trailing_zeros
-	print(new_accumulator_binary)
 	var new_accumulator = signed_bin_to_int(new_accumulator_binary)
-	print(new_accumulator)
+	
 	accumulator_reg.register_value = new_accumulator
 	
 	
@@ -182,6 +182,12 @@ func ars():
 func tra():
 	next_instruction_sector = operand_sector
 	next_instruction_channel = operand_channel
+	
+func tmi():
+	var accumulator_value = accumulator_reg.register_value
+	if accumulator_value < 0:
+		tra()
+
 	
 	
 	

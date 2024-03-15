@@ -101,7 +101,7 @@ func _button_pressed():
 		var operand_channel = get_operand_channel(i)
 		
 		var bstring = opcode + flag + next_sector + operand_channel + operand_sector
-		var value_to_write = bstring.bin_to_int()
+		var value_to_write = signed_bin_to_int(bstring)
 		
 		channel_values[sector-1] = value_to_write
 		channel_node.register_values = channel_values
@@ -207,3 +207,22 @@ func value_to_binary(value_in, num_registers):
 			
 
 		return ret_str
+
+
+func signed_bin_to_int(b_string):
+	"""
+	dedicated function required to return negative cases
+	"""
+	
+	var str_length = b_string.length()
+	
+	#negative_case
+	if b_string[0] == '1':
+		var modified_string = b_string.right(str_length-1)
+		modified_string = '-0b'+modified_string
+		var int_out = modified_string.bin_to_int()
+		return int_out
+		
+	else:
+		var int_out = b_string.bin_to_int()
+		return int_out
