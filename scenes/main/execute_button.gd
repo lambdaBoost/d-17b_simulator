@@ -51,8 +51,7 @@ func _button_pressed():
 	var operand_sector_binary = instruction.substr(17,7)
 	operand_sector = operand_sector_binary.bin_to_int()
 	
-	#load operand to number register
-	load_value_from_mem(operand_channel, operand_sector)
+
 	
 	#set global variable for next sector
 	load_next_sector()
@@ -60,28 +59,37 @@ func _button_pressed():
 	#execute instruction. this is an inelegant way of doing it....but cant store functions
 	#as dict in godot, and cant use decorators
 	if operation == '1001':
+		#load operand from memory
+		load_value_from_mem(operand_channel, operand_sector)
 		cla()
 	elif operation == '1101':
+		load_value_from_mem(operand_channel, operand_sector)
 		add()
 	elif operation == '0101':
+		load_value_from_mem(operand_channel, operand_sector)
 		mpy()
 	elif operation == '1111':
+		load_value_from_mem(operand_channel, operand_sector)
 		sub()
 	elif operation == '0000' and operand_channel_binary == '01011':
 		als()
 	elif operation == '0000' and operand_channel_binary == '10000':
 		ars()
 	elif operation == '1010':
+		load_value_from_mem(operand_channel, operand_sector)
 		tra()
 	elif operation == '0010':
+		load_value_from_mem(operand_channel, operand_sector)
 		tmi()
-		
+	elif operation == '1000' and operand_channel_binary == '10111':
+		com()
+	elif operation == '1000' and operand_channel_binary == '10110':
+		mim()
 	
 
 func load_first_instruction():
 	var first_channel = get_node("../code-sheet/row0/current_channel")
 	var first_sector = get_node("../code-sheet/row0/current_sector")
-	
 	var first_channel_value = first_channel.get_selected_id()
 	var first_sector_value = first_sector.get_selected_id()
 	
@@ -148,7 +156,6 @@ func sub():
 	
 	var current_accumulator = accumulator_reg.register_value
 	var new_accumulator = current_accumulator - operand
-	print(new_accumulator)
 	accumulator_reg.register_value = new_accumulator
 	
 func als():
@@ -188,8 +195,17 @@ func tmi():
 	if accumulator_value < 0:
 		tra()
 
+func com():
+	var accumulator_value = accumulator_reg.register_value
+	var new_accumulator_value = accumulator_value * -1
+	accumulator_reg.register_value = new_accumulator_value
+
 	
-	
+func mim():
+	var accumulator_value = accumulator_reg.register_value
+	if accumulator_value > 0:
+		var new_accumulator_value = accumulator_value * -1
+		accumulator_reg.register_value = new_accumulator_value
 	
 	
 func value_to_binary(value_in, num_registers):

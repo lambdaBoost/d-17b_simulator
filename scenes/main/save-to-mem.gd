@@ -101,7 +101,7 @@ func _button_pressed():
 		var operand_channel = get_operand_channel(i)
 		
 		var bstring = opcode + flag + next_sector + operand_channel + operand_sector
-		var value_to_write = signed_bin_to_int(bstring)
+		var value_to_write = bstring.bin_to_int()
 		
 		channel_values[sector-1] = value_to_write
 		channel_node.register_values = channel_values
