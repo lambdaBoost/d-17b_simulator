@@ -96,6 +96,9 @@ func _button_pressed():
 		smp()
 	elif operation == '1000' and operand_channel_binary == '10101':
 		ana()
+	elif operation == '1011':
+		load_value_from_mem(operand_channel, operand_sector)
+		sto()
 	
 
 func load_first_instruction():
@@ -118,8 +121,21 @@ func load_value_from_mem(channel, sector):
 	#copy to number register
 	number_reg.register_value = value
 	
+func load_value_to_mem(value, channel, sector):
+	var channel_number = str(channel)
+	var channel_to_load = get_node("../mainMemory/channel" + channel_number)
+	var channel_array = channel_to_load.register_values
+	channel_array[sector-1] = value
+	channel_to_load.register_values = channel_array
 	
 	
+func sto():
+	
+	var accumulator_value = accumulator_reg.register_value
+	if operand_channel <= 20:
+		load_value_to_mem(accumulator_value, operand_channel, operand_sector)
+	
+	#TODO: add case for loops
 	
 func load_instruction_from_mem(channel, sector):
 	var channel_number = str(channel)
