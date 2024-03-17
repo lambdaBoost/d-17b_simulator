@@ -91,6 +91,11 @@ func _button_pressed():
 	elif operation == '1110':
 		load_value_from_mem(operand_channel, operand_sector)
 		ssu()
+	elif operation == '0100':
+		load_value_from_mem(operand_channel, operand_sector)
+		smp()
+	elif operation == '1000' and operand_channel_binary == '10101':
+		ana()
 	
 
 func load_first_instruction():
@@ -261,6 +266,53 @@ func ssu():
 	accumulator_reg.register_value = new_acc
 	
 	
+func smp():
+	
+	var accumulator_binary = value_to_binary(accumulator_reg.register_value,24)
+	var accumulator_left = accumulator_binary.substr(0,10)
+	var accumulator_right = accumulator_binary.substr(14,10)
+
+	
+	var operand_binary = value_to_binary(number_reg.register_value,24)
+	var operand_left = operand_binary.substr(0,10)
+	var operand_right = operand_binary.substr(14,10)
+	
+	var accumulator_left_int = signed_bin_to_int(accumulator_left)
+	var accumulator_right_int = signed_bin_to_int(accumulator_right)
+	var operand_left_int = signed_bin_to_int(operand_left)
+	var operand_right_int = signed_bin_to_int(operand_right)
+	
+	var l_accumulator_binary = accumulator_right + '0000' + accumulator_left
+	var l_accumulator_new = signed_bin_to_int(l_accumulator_binary)
+	lower_accumulator_reg.register_value = l_accumulator_new
+	
+	var new_acc_right = accumulator_right_int * operand_right_int
+	var new_acc_left = accumulator_left_int * operand_left_int
+	
+	var new_acc_right_bin = value_to_binary(new_acc_right, 10)
+	var new_acc_left_bin = value_to_binary(new_acc_left, 10)
+	
+	var new_acc_binary = new_acc_right_bin + '0000' + new_acc_left_bin
+	var new_acc = signed_bin_to_int(new_acc_binary)
+	
+	accumulator_reg.register_value = new_acc
+	
+func ana():
+	
+	var acc_new = ""
+	var acc_current = value_to_binary(accumulator_reg.register_value, 24)
+	var l_acc_current = value_to_binary(lower_accumulator_reg.register_value, 24)
+	
+	for i in range(acc_current.length()):
+		if acc_current[i] == '1' and l_acc_current[i] == '1':
+			acc_new = acc_new + '1'
+		else:
+			acc_new = acc_new + '0'
+			
+	print(acc_new)
+	var acc_new_dec = signed_bin_to_int(acc_new)
+	print(acc_new_dec)
+	accumulator_reg.register_value = acc_new_dec
 	
 func value_to_binary(value_in, num_registers):
 	
@@ -290,6 +342,8 @@ func value_to_binary(value_in, num_registers):
 		else:
 			ret_str = "0" + ret_str
 			
+		if ret_str.length() > num_registers:
+			ret_str = ret_str.right(num_registers) #TODO - this is a temp fix
 
 		return ret_str
 
