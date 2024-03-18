@@ -18,7 +18,7 @@ func _process(delta):
 	
 func add_channels():
 	var channel_dropdown = get_node("current_channel")
-	for i in range(20):
+	for i in range(21):
 		channel_dropdown.add_item(str(i),i)
 		
 func add_sectors():
@@ -49,7 +49,7 @@ func add_next_sector():
 	
 func add_operand_channel():
 	var operand_channel = get_node("operand_channel")
-	for i in range(27):
+	for i in range(28):
 		operand_channel.add_item(str(i),i)
 		
 func add_operand_sector():

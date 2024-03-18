@@ -113,29 +113,82 @@ func load_first_instruction():
 
 	
 func load_value_from_mem(channel, sector):
-	var channel_number = str(channel)
-	var channel_to_load = get_node("../mainMemory/channel" + channel_number)
-	var channel_array = channel_to_load.register_values
-	var value = channel_array[sector-1]	
+	if channel <= 20:
+		var channel_number = str(channel)
+		var channel_to_load = get_node("../mainMemory/channel" + channel_number)
+		var channel_array = channel_to_load.register_values
+		var value = channel_array[sector-1]	
+		#copy to number register
+		number_reg.register_value = value
+		
+	elif channel == 21:
+		load_value_from_loop(sector, 'H', 16, 4)
+	elif channel == 22:
+		load_value_from_loop(sector, 'E', 8, 3)
+	elif channel == 23:
+		load_value_from_loop(sector, 'H', 4, 2)
+	elif channel == 24:
+		load_value_from_loop(sector, 'V', 4, 2)
+	elif channel == 25:
+		load_value_from_loop(sector, 'F', 4, 2)
+	elif channel == 26:
+		load_value_from_loop(sector, 'U', 1, 1)
+	elif channel == 27:
+		number_reg.register_value = lower_accumulator_reg.register_value
 	
-	#copy to number register
-	number_reg.register_value = value
+	
+	
 	
 func load_value_to_mem(value, channel, sector):
-	var channel_number = str(channel)
-	var channel_to_load = get_node("../mainMemory/channel" + channel_number)
-	var channel_array = channel_to_load.register_values
-	channel_array[sector-1] = value
-	channel_to_load.register_values = channel_array
+	if channel <= 20:
+		var channel_number = str(channel)
+		var channel_to_load = get_node("../mainMemory/channel" + channel_number)
+		var channel_array = channel_to_load.register_values
+		channel_array[sector-1] = value
+		channel_to_load.register_values = channel_array
 	
+	elif channel == 21:
+		load_value_to_loop(sector, 'H', 16, 4, value)
+	elif channel == 22:
+		load_value_to_loop(sector, 'E', 8, 3, value)
+	elif channel == 23:
+		load_value_to_loop(sector, 'H', 4, 2, value)
+	elif channel == 24:
+		load_value_to_loop(sector, 'V', 4, 2, value)
+	elif channel == 25:
+		load_value_to_loop(sector, 'F', 4, 2, value)
+	elif channel == 26:
+		load_value_to_loop(sector, 'U', 1, 1, value)
+	elif channel == 27:
+		lower_accumulator_reg.register_value = value
+	
+	
+func load_value_from_loop(sector, loop_name, loop_size, bitsize):
+		var channel_to_load = get_node("../loops/" + loop_name + "-loop")
+		var sector_binary = value_to_binary(sector, 7)
+		sector_binary = sector_binary.right(bitsize)
+		var sector_number = sector_binary.bin_to_int()
+		var channel_array = channel_to_load.register_values
+		var value = channel_array[sector-1]	
+		number_reg.register_value = value
+		
+		
+func load_value_to_loop(sector, loop_name, loop_size, bitsize, value):
+		var channel_to_load = get_node("../loops/" + loop_name + "-loop")
+		var sector_binary = value_to_binary(sector, 7)
+		sector_binary = sector_binary.right(bitsize)
+		var sector_number = sector_binary.bin_to_int()
+		var channel_array = channel_to_load.register_values
+		channel_array[sector-1] = value	
+		channel_to_load.register_values = channel_array
+		
+		
 	
 func sto():
 	
 	var accumulator_value = accumulator_reg.register_value
-	if operand_channel <= 20:
-		load_value_to_mem(accumulator_value, operand_channel, operand_sector)
-	
-	#TODO: add case for loops
+	load_value_to_mem(accumulator_value, operand_channel, operand_sector)
+
 	
 func load_instruction_from_mem(channel, sector):
 	var channel_number = str(channel)
