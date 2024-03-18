@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cwxm2n2ivyoyy" path="res://scenes/outputs/binary_out.tscn" id="14_veons"]
 [ext_resource type="PackedScene" uid="uid://dgrde2h1lhuv1" path="res://scenes/outputs/voltage_output.tscn" id="15_orrxs"]
 [ext_resource type="PackedScene" uid="uid://d0qnu58dm3l5e" path="res://scenes/inputs/discrete_in_A.tscn" id="16_wgaxi"]
-[ext_resource type="PackedScene" uid="uid://bg7fbw1jwuejp" path="res://scenes/inputs/discrete_in_B.tscn" id="17_6lm8l"]
+[ext_resource type="PackedScene" uid="uid://76x0wkrjndbk" path="res://scenes/inputs/discrete_in_B.tscn" id="17_6lm8l"]
 [ext_resource type="Texture2D" uid="uid://3hch4eskpb75" path="res://assets/button_normal.png" id="18_uoexn"]
 [ext_resource type="Texture2D" uid="uid://sq3b6qrbif2n" path="res://assets/button_pressed.png" id="19_n4kv3"]
 [ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="20_on05t"]
@@ -32,18 +32,18 @@
 [node name="labels" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="labels"]
-offset_left = 832.0
-offset_top = 72.0
-offset_right = 899.0
-offset_bottom = 114.0
+offset_left = 808.0
+offset_top = 88.0
+offset_right = 875.0
+offset_bottom = 130.0
 theme_override_font_sizes/font_size = 30
 text = "DISK"
 
 [node name="Label6" type="Label" parent="labels"]
-offset_left = 1960.0
-offset_top = 8.0
-offset_right = 2097.0
-offset_bottom = 50.0
+offset_left = 1480.0
+offset_top = 24.0
+offset_right = 1617.0
+offset_bottom = 66.0
 theme_override_font_sizes/font_size = 30
 text = "OUTPUTS
 "
@@ -57,10 +57,10 @@ theme_override_font_sizes/font_size = 30
 text = "FLIP-FLOPS"
 
 [node name="Label3" type="Label" parent="labels"]
-offset_left = 704.0
-offset_top = 8.0
-offset_right = 864.0
-offset_bottom = 50.0
+offset_left = 656.0
+offset_top = 24.0
+offset_right = 1059.0
+offset_bottom = 66.0
 theme_override_font_sizes/font_size = 30
 text = "ARITHMETIC AND CONTROL"
 
@@ -81,10 +81,10 @@ theme_override_font_sizes/font_size = 30
 text = "MAIN MEMORY"
 
 [node name="Label7" type="Label" parent="labels"]
-offset_left = -608.0
-offset_top = 504.0
-offset_right = -115.0
-offset_bottom = 546.0
+offset_left = 344.0
+offset_top = 904.0
+offset_right = 837.0
+offset_bottom = 946.0
 theme_override_font_sizes/font_size = 30
 text = "INPUTS"
 
@@ -481,7 +481,7 @@ width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D7" type="Line2D" parent="mappings"]
-position = Vector2(-55, 113)
+position = Vector2(-89, 113)
 points = PackedVector2Array(1847, 167, 1847, 351)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
@@ -494,27 +494,23 @@ default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D5" type="Line2D" parent="mappings"]
 position = Vector2(-7, -79)
-points = PackedVector2Array(1471, 447, 1799, 447)
+points = PackedVector2Array(1471, 447, 1765, 447)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D8" type="Line2D" parent="mappings"]
 position = Vector2(-559, 361)
-points = PackedVector2Array(2239, 495, 2304, 496)
+points = PackedVector2Array(2247, 496, 2304, 496)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="inputs" type="Node2D" parent="."]
 
 [node name="discrete-in-A" parent="inputs" instance=ExtResource("16_wgaxi")]
-position = Vector2(-1240, 120)
-register_label = "DISCRETE INPUT A"
-num_registers = 19
+position = Vector2(200, 944)
 
 [node name="discrete-in-B" parent="inputs" instance=ExtResource("17_6lm8l")]
-position = Vector2(-1360, -608)
-register_label = "DISCRETE INPUT B"
-num_registers = 24
+position = Vector2(200, 1008)
 
 [node name="Run" type="TextureButton" parent="."]
 offset_left = 856.0
