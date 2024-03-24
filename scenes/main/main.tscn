@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=26 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -17,8 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cc4mtk2a72hli" path="res://scenes/outputs/character_out.tscn" id="13_wovrm"]
 [ext_resource type="PackedScene" uid="uid://cwxm2n2ivyoyy" path="res://scenes/outputs/binary_out.tscn" id="14_veons"]
 [ext_resource type="PackedScene" uid="uid://dgrde2h1lhuv1" path="res://scenes/outputs/voltage_output.tscn" id="15_orrxs"]
-[ext_resource type="PackedScene" uid="uid://d0qnu58dm3l5e" path="res://scenes/inputs/discrete_in_A.tscn" id="16_wgaxi"]
-[ext_resource type="PackedScene" uid="uid://76x0wkrjndbk" path="res://scenes/inputs/discrete_in_B.tscn" id="17_6lm8l"]
+[ext_resource type="FontFile" uid="uid://kkgkkctae5wv" path="res://assets/mallard-smooth.ttf" id="18_mompm"]
 [ext_resource type="Texture2D" uid="uid://3hch4eskpb75" path="res://assets/button_normal.png" id="18_uoexn"]
 [ext_resource type="Texture2D" uid="uid://sq3b6qrbif2n" path="res://assets/button_pressed.png" id="19_n4kv3"]
 [ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="20_on05t"]
@@ -212,6 +211,7 @@ channel_label = 26
 num_registers = 25
 num_sectors = 1
 memory_type = "loop"
+loop_name_text = "U"
 
 [node name="F-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 744)
@@ -219,6 +219,7 @@ channel_label = 25
 num_registers = 25
 num_sectors = 4
 memory_type = "loop"
+loop_name_text = "F"
 
 [node name="V-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 776)
@@ -226,6 +227,7 @@ channel_label = 24
 num_registers = 25
 num_sectors = 4
 memory_type = "loop"
+loop_name_text = "V"
 
 [node name="R-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 808)
@@ -233,6 +235,7 @@ channel_label = 23
 num_registers = 25
 num_sectors = 4
 memory_type = "loop"
+loop_name_text = "R"
 
 [node name="E-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 840)
@@ -240,13 +243,15 @@ channel_label = 22
 num_registers = 25
 num_sectors = 8
 memory_type = "loop"
+loop_name_text = "E"
 
 [node name="H-loop" parent="loops" instance=ExtResource("9_178ai")]
-position = Vector2(144, 872)
+position = Vector2(145, 872)
 channel_label = 21
 num_registers = 25
 num_sectors = 16
 memory_type = "loop"
+loop_name_text = "H"
 
 [node name="mainMemory" type="Node2D" parent="."]
 position = Vector2(-56, 472)
@@ -335,18 +340,18 @@ position = Vector2(144, 704)
 channel_label = 20
 
 [node name="sectorSelect" type="OptionButton" parent="mainMemory"]
-offset_left = 1856.0
-offset_top = 1472.0
-offset_right = 1901.0
-offset_bottom = 1492.0
+offset_left = 1776.0
+offset_top = 1640.0
+offset_right = 1821.0
+offset_bottom = 1660.0
 script = ExtResource("9_kktwa")
 
 [node name="Label" type="Label" parent="mainMemory/sectorSelect"]
 layout_mode = 0
-offset_left = -64.0
-offset_right = -4.0
-offset_bottom = 23.0
-text = "SECTOR"
+offset_top = -32.0
+offset_right = 60.0
+offset_bottom = -9.0
+text = "Sector"
 
 [node name="Value-input" parent="mainMemory" instance=ExtResource("10_i4odh")]
 position = Vector2(1672, 1688)
@@ -506,11 +511,43 @@ default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="inputs" type="Node2D" parent="."]
 
-[node name="discrete-in-A" parent="inputs" instance=ExtResource("16_wgaxi")]
-position = Vector2(200, 944)
+[node name="discrete-in-A" type="LineEdit" parent="inputs"]
+offset_left = 256.0
+offset_top = 976.0
+offset_right = 569.0
+offset_bottom = 1009.0
+theme_override_fonts/font = ExtResource("18_mompm")
+theme_override_font_sizes/font_size = 42
+placeholder_text = "0000000000000000000"
+max_length = 19
+expand_to_text_length = true
 
-[node name="discrete-in-B" parent="inputs" instance=ExtResource("17_6lm8l")]
-position = Vector2(200, 1008)
+[node name="Label" type="Label" parent="inputs/discrete-in-A"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 31.0
+text = "A"
+
+[node name="discrete-in-B" type="LineEdit" parent="inputs"]
+offset_left = 256.0
+offset_top = 1032.0
+offset_right = 649.0
+offset_bottom = 1065.0
+theme_override_fonts/font = ExtResource("18_mompm")
+theme_override_font_sizes/font_size = 42
+placeholder_text = "000000000000000000000000"
+max_length = 24
+expand_to_text_length = true
+
+[node name="Label" type="Label" parent="inputs/discrete-in-B"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 31.0
+text = "B"
 
 [node name="Run" type="TextureButton" parent="."]
 offset_left = 856.0

@@ -37,6 +37,13 @@ offset_right = 585.0
 offset_bottom = 791.0
 uppercase = true
 
+[node name="loop-name" type="Label" parent="."]
+offset_left = 1400.0
+offset_top = 768.0
+offset_right = 1521.0
+offset_bottom = 791.0
+uppercase = true
+
 [node name="channel_label" type="Label" parent="."]
 offset_left = 512.0
 offset_top = 776.0

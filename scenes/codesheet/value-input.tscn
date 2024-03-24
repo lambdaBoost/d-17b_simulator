@@ -36,10 +36,9 @@ text = "Add to
 memory"
 
 [node name="channelSelect" type="OptionButton" parent="."]
-offset_left = 128.0
-offset_top = 8.0
-offset_right = 173.0
-offset_bottom = 28.0
+offset_top = -48.0
+offset_right = 45.0
+offset_bottom = -28.0
 script = ExtResource("6_w3lv1")
 
 [node name="Label" type="Label" parent="channelSelect"]

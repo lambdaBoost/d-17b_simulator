@@ -5,6 +5,7 @@ extends Node2D
 @export var num_registers: int
 @export var num_sectors: int
 @export var memory_type: String
+@export var loop_name_text: String
 
 
 
@@ -20,6 +21,7 @@ func _ready():
 	
 	if memory_type == "loop":
 		add_sectors(num_sectors)
+		add_loop_names()
 		initialise_values(num_sectors)
 		
 	else:
@@ -112,4 +114,7 @@ func initialise_values(n_sectors):
 	for i in range(n_sectors):
 		register_values.append(0)
 
+func add_loop_names():
+	var loop_name = get_node("loop-name")
+	loop_name.text = loop_name_text
 	

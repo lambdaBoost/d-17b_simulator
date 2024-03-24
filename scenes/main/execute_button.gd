@@ -99,6 +99,10 @@ func _button_pressed():
 	elif operation == '1011':
 		load_value_from_mem(operand_channel, operand_sector)
 		sto()
+	elif operation == '1000' and operand_channel_binary == '11010':
+		dia()
+	elif operation == '1000' and operand_channel_binary == '11001':
+		dib()
 	
 
 func load_first_instruction():
@@ -382,6 +386,24 @@ func ana():
 	var acc_new_dec = signed_bin_to_int(acc_new)
 	print(acc_new_dec)
 	accumulator_reg.register_value = acc_new_dec
+	
+	
+func dia():
+	
+	var a_input = get_node('../inputs/discrete-in-A')
+	var a_value = a_input.text
+	a_value = '00000' + a_value #ensures input is always positive
+	var a_decimal = signed_bin_to_int(a_value)
+	accumulator_reg.register_value = a_decimal
+	
+func dib():
+	
+	var b_input = get_node('../inputs/discrete-in-B')
+	var b_value = b_input.text
+	var b_decimal = signed_bin_to_int(b_value)
+	accumulator_reg.register_value = b_decimal
+	
+	
 	
 func value_to_binary(value_in, num_registers):
 	
