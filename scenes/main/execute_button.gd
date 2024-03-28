@@ -103,7 +103,8 @@ func _button_pressed():
 		dia()
 	elif operation == '1000' and operand_channel_binary == '11001':
 		dib()
-	
+	elif operation == '0000' and operand_channel_binary == '10100':
+		coa()
 
 func load_first_instruction():
 	var first_channel = get_node("../code-sheet/row0/current_channel")
@@ -402,6 +403,17 @@ func dib():
 	var b_value = b_input.text
 	var b_decimal = signed_bin_to_int(b_value)
 	accumulator_reg.register_value = b_decimal
+	
+func coa():
+	
+	var character_out_register = get_node("../outputs/character_out")
+	var a_value= accumulator_reg.register_value
+	var a_binary = value_to_binary(a_value, 24)
+	var a_output = a_binary.left(4)
+	print(a_output)
+	#character_out_register.displayed_value = a_output
+	var decimal_output = a_output.bin_to_int() #unsigned as we just transfer bstring
+	character_out_register.register_value = decimal_output
 	
 	
 	

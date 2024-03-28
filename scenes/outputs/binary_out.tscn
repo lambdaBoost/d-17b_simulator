@@ -29,6 +29,8 @@ spacing_glyph = 17
 position = Vector2(162, 1299)
 rotation = -1.5708
 script = ExtResource("1_8riu1")
+num_registers = 6
+register_type = "arithmetic"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ns71d")
@@ -45,7 +47,7 @@ uppercase = true
 [node name="value" type="Label" parent="."]
 offset_left = 600.0
 offset_top = 773.0
-offset_right = 1359.0
+offset_right = 797.0
 offset_bottom = 800.0
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = SubResource("FontVariation_biloi")
