@@ -60,8 +60,8 @@ theme_override_font_sizes/font_size = 40
 [node name="DAC" type="Node2D" parent="."]
 
 [node name="voltage_out" type="Line2D" parent="DAC"]
-position = Vector2(976, 762.667)
-scale = Vector2(1.53846, 0.888889)
+position = Vector2(1034.58, 762.667)
+scale = Vector2(2.71006, 0.888889)
 points = PackedVector2Array(-48, 8, 0, 8, 0, 40, -48, 40)
 closed = true
 width = 2.0

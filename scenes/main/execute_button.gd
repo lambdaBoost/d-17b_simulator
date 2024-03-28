@@ -9,7 +9,9 @@ var next_instruction_channel
 var next_instruction_sector
 var first_instruction = true
 var operand_sector
+var operand_sector_binary
 var operand_channel
+var operand_channel_binary
 var operand
 
 # Called when the node enters the scene tree for the first time.
@@ -43,12 +45,12 @@ func _button_pressed():
 	
 	#load operand channel
 	var ch_register = get_node("../flipflops/ff-ch-buffer")
-	var operand_channel_binary = instruction.substr(12,5)
+	operand_channel_binary = instruction.substr(12,5)
 	operand_channel = operand_channel_binary.bin_to_int()
 	ch_register.displayed_value = operand_channel_binary
 	
 	#load operand sector
-	var operand_sector_binary = instruction.substr(17,7)
+	operand_sector_binary = instruction.substr(17,7)
 	operand_sector = operand_sector_binary.bin_to_int()
 	
 
@@ -105,6 +107,14 @@ func _button_pressed():
 		dib()
 	elif operation == '0000' and operand_channel_binary == '10100':
 		coa()
+	elif operation == '1000' and operand_channel_binary.left(3) == '111':
+		lpr()
+	elif operation == '1000' and operand_channel_binary == '01111':
+		voa()
+	elif operation == '1000' and operand_channel_binary == '10000':
+		vob()
+	elif operation == '1000' and operand_channel_binary == '10001':
+		voc()
 
 func load_first_instruction():
 	var first_channel = get_node("../code-sheet/row0/current_channel")
@@ -415,6 +425,85 @@ func coa():
 	var decimal_output = a_output.bin_to_int() #unsigned as we just transfer bstring
 	character_out_register.register_value = decimal_output
 	
+func lpr():
+	"""
+	this one is more complex than I anticipated
+	takes last bit of channel and bits 3 and 4 of sector to determine phase reg values
+	
+	I've simplified it to just use 3 lsbs of the sector instead
+	"""
+	var phase_reg = get_node('../outputs/phase-register')
+	var phase_reg_value = operand_sector_binary.right(3)
+	
+	phase_reg.displayed_value = phase_reg_value
+	
+func voa():
+	
+	"""
+	based on the docs, ive assumed binary representations are unsigned
+	converted to +- 20v by the dac
+	"""
+	
+	var dac_register = get_node('../outputs/voltage1')
+	var acc_value = accumulator_reg.register_value
+	var voltage_binary = value_to_binary(acc_value, 24)
+	
+	if operand_sector_binary.substr(3,1) == '0':
+		
+		voltage_binary = voltage_binary.right(8)
+		var voltage_decimal = voltage_binary.bin_to_int()
+		dac_register.register_value = voltage_decimal
+		
+	else:
+		voltage_binary = voltage_binary.substr(3,8)
+		var voltage_decimal = voltage_binary.bin_to_int()
+		dac_register.register_value = voltage_decimal
+		
+		
+func vob():
+	
+	"""
+	based on the docs, ive assumed binary representations are unsigned
+	converted to +- 20v by the dac
+	"""
+	
+	var dac_register = get_node('../outputs/voltage2')
+	var acc_value = accumulator_reg.register_value
+	var voltage_binary = value_to_binary(acc_value, 24)
+	
+	if operand_sector_binary.substr(3,1) == '0':
+		
+		voltage_binary = voltage_binary.right(8)
+		var voltage_decimal = voltage_binary.bin_to_int()
+		dac_register.register_value = voltage_decimal
+		
+	else:
+		voltage_binary = voltage_binary.substr(3,8)
+		var voltage_decimal = voltage_binary.bin_to_int()
+		dac_register.register_value = voltage_decimal
+		
+
+func voc():
+	
+	"""
+	based on the docs, ive assumed binary representations are unsigned
+	converted to +- 20v by the dac
+	"""
+	
+	var dac_register = get_node('../outputs/voltage3')
+	var acc_value = accumulator_reg.register_value
+	var voltage_binary = value_to_binary(acc_value, 24)
+	
+	if operand_sector_binary.substr(3,1) == '0':
+		
+		voltage_binary = voltage_binary.right(8)
+		var voltage_decimal = voltage_binary.bin_to_int()
+		dac_register.register_value = voltage_decimal
+		
+	else:
+		voltage_binary = voltage_binary.substr(3,8)
+		var voltage_decimal = voltage_binary.bin_to_int()
+		dac_register.register_value = voltage_decimal
 	
 	
 func value_to_binary(value_in, num_registers):

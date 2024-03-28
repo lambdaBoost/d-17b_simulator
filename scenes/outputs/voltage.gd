@@ -60,9 +60,9 @@ func value_to_binary(value_in):
 		return ret_str
 		
 func value_to_voltage(value):
-	"""converts the DAC output to 0-10v value"""
+	"""converts the DAC output to 0-20v value"""
 	
-	var voltage = 10 * float(value)/255
+	var voltage = (40 * float(value)/255) - 20
 	voltage = snappedf(voltage, 0.01)
 	voltage = str(voltage)
 	return voltage

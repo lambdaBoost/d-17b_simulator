@@ -481,7 +481,7 @@ default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D10" type="Line2D" parent="mappings"]
 position = Vector2(-839, 561)
-points = PackedVector2Array(2527, 207, 2527, 383)
+points = PackedVector2Array(2567, 207, 2567, 383)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
@@ -505,7 +505,7 @@ default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D8" type="Line2D" parent="mappings"]
 position = Vector2(-559, 361)
-points = PackedVector2Array(2247, 496, 2304, 496)
+points = PackedVector2Array(2287, 495, 2304, 496)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
