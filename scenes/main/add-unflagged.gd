@@ -1,8 +1,8 @@
 extends TextureButton
 
 var row_interval = 40
-var first_row_y = 1250
-var row_x = -48
+var first_row_y = 1320
+var row_x = 170
 var current_y = first_row_y
 @export var row_num = 0
 
@@ -21,6 +21,7 @@ func add_unflagged_row():
 	var code_row_instance = code_row.instantiate()
 	code_row_instance.name = "row"+str(row_num)
 	code_row_instance.position.y = current_y
+	code_row_instance.position.x = row_x
 	
 	#remove headers
 	if current_y > first_row_y:

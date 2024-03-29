@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=30 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -26,6 +26,9 @@
 [ext_resource type="Script" path="res://scenes/main/add-unflagged.gd" id="23_etel3"]
 [ext_resource type="Script" path="res://scenes/main/reset.gd" id="23_pik2t"]
 [ext_resource type="Script" path="res://scenes/main/save-to-mem.gd" id="25_8s5yp"]
+[ext_resource type="Texture2D" uid="uid://b1f2rokr6k8t7" path="res://assets/red_normal.png" id="25_16g0g"]
+[ext_resource type="Texture2D" uid="uid://dqmwjo4y744gg" path="res://assets/red_pressed.png" id="26_mw07y"]
+[ext_resource type="Texture2D" uid="uid://de5r88hc51m5v" path="res://assets/red_hover.png" id="27_mts58"]
 
 [node name="main" type="Node2D"]
 
@@ -33,10 +36,10 @@
 
 [node name="Label" type="Label" parent="labels"]
 offset_left = 808.0
-offset_top = 88.0
+offset_top = 72.0
 offset_right = 875.0
-offset_bottom = 130.0
-theme_override_font_sizes/font_size = 30
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 20
 text = "DISK"
 
 [node name="Label6" type="Label" parent="labels"]
@@ -65,26 +68,26 @@ theme_override_font_sizes/font_size = 30
 text = "ARITHMETIC AND CONTROL"
 
 [node name="Label4" type="Label" parent="labels"]
-offset_left = 688.0
-offset_top = 1600.0
-offset_right = 1181.0
-offset_bottom = 1642.0
+offset_left = 880.0
+offset_top = 1184.0
+offset_right = 1373.0
+offset_bottom = 1226.0
 theme_override_font_sizes/font_size = 30
 text = "RAPID ACCESS VOLATILE MEMORY"
 
 [node name="Label5" type="Label" parent="labels"]
-offset_left = 688.0
-offset_top = 1888.0
-offset_right = 1181.0
-offset_bottom = 1930.0
+offset_left = 1008.0
+offset_top = 1464.0
+offset_right = 1501.0
+offset_bottom = 1506.0
 theme_override_font_sizes/font_size = 30
 text = "MAIN MEMORY"
 
 [node name="Label7" type="Label" parent="labels"]
-offset_left = 344.0
-offset_top = 904.0
-offset_right = 837.0
-offset_bottom = 946.0
+offset_left = 504.0
+offset_top = 920.0
+offset_right = 997.0
+offset_bottom = 962.0
 theme_override_font_sizes/font_size = 30
 text = "INPUTS"
 
@@ -104,7 +107,7 @@ width = 3.0
 
 [node name="link2" type="Line2D" parent="flipflops/ff-number"]
 position = Vector2(1080, 614)
-points = PackedVector2Array(-392, 0, -88, 0)
+points = PackedVector2Array(-393, 3, -87, 3)
 width = 3.0
 
 [node name="link3" type="Line2D" parent="flipflops/ff-number"]
@@ -200,12 +203,40 @@ position = Vector2(-192, -544)
 num_registers = 24
 register_type = "arithmetic"
 
+[node name="Label" type="Label" parent="disk-registers"]
+offset_left = 848.0
+offset_top = 120.0
+offset_right = 1167.0
+offset_bottom = 143.0
+text = "-----------------accumulator right------------------"
+
+[node name="Label3" type="Label" parent="disk-registers"]
+offset_left = 888.0
+offset_top = 304.0
+offset_right = 1202.0
+offset_bottom = 327.0
+text = "--------------------number right---------------------"
+
+[node name="Label4" type="Label" parent="disk-registers"]
+offset_left = 432.0
+offset_top = 304.0
+offset_right = 689.0
+offset_bottom = 327.0
+text = "---------------------number left-----------------------"
+
+[node name="Label2" type="Label" parent="disk-registers"]
+offset_left = 403.0
+offset_top = 123.0
+offset_right = 732.0
+offset_bottom = 146.0
+text = "-----------------accumulator left--------------------"
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 544)
+position = Vector2(976, 520)
 script = ExtResource("7_xa5o7")
 
 [node name="loops" type="Node2D" parent="."]
-position = Vector2(-56, 192)
+position = Vector2(-32, -240)
 
 [node name="U-loop" parent="loops" instance=ExtResource("9_178ai")]
 position = Vector2(144, 712)
@@ -256,7 +287,7 @@ memory_type = "loop"
 loop_name_text = "H"
 
 [node name="mainMemory" type="Node2D" parent="."]
-position = Vector2(-56, 472)
+position = Vector2(-32, 40)
 
 [node name="channel0" parent="mainMemory" instance=ExtResource("10_08kvm")]
 position = Vector2(144, 1344)
@@ -373,19 +404,19 @@ color = Color(0, 0.109804, 0.14902, 1)
 position = Vector2(1032, 224)
 
 [node name="discrete-out" parent="outputs" instance=ExtResource("11_mr1lq")]
-position = Vector2(-616, 24)
+position = Vector2(-624, -48)
 hi_output = 5
 
 [node name="voltage1" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(-352, -224)
+position = Vector2(-352, -352)
 register_label = "VOLTAGE 1"
 
 [node name="voltage2" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(-352, -152)
+position = Vector2(-352, -288)
 register_label = "VOLTAGE 2"
 
 [node name="voltage3" parent="outputs" instance=ExtResource("12_sow7b")]
-position = Vector2(-352, -80)
+position = Vector2(-352, -224)
 register_label = "VOLTAGE 3"
 
 [node name="character_out" parent="outputs" instance=ExtResource("13_wovrm")]
@@ -426,19 +457,19 @@ register_label = "VOLTAGE OUT"
 bitnames_label = "V30 V20 V10"
 
 [node name="voltage_output2" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(-152, -360)
+position = Vector2(-152, -384)
 bitnames_label = "V31 V21 V11"
 
 [node name="voltage_output3" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(-152, -232)
+position = Vector2(-152, -280)
 bitnames_label = "V32 V22 V12"
 
 [node name="voltage_output4" parent="outputs" instance=ExtResource("15_orrxs")]
-position = Vector2(-152, -104)
+position = Vector2(-152, -176)
 bitnames_label = "V33 V23 V13"
 
 [node name="phase-register" parent="outputs" instance=ExtResource("5_6nj2o")]
-position = Vector2(-352, -312)
+position = Vector2(-352, -416)
 register_label = "PHASE REGISTER"
 num_registers = 3
 bitnames_label = "P1 P2 P3"
@@ -483,7 +514,7 @@ default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D10" type="Line2D" parent="mappings"]
 position = Vector2(-839, 561)
-points = PackedVector2Array(2567, 207, 2567, 383)
+points = PackedVector2Array(2567, 79, 2567, 239)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
@@ -494,8 +525,8 @@ width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D9" type="Line2D" parent="mappings"]
-position = Vector2(-655, 529)
-points = PackedVector2Array(2399, -9, 2399, 439)
+position = Vector2(-648, 520)
+points = PackedVector2Array(2392, -8, 2392, 376)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
@@ -507,16 +538,16 @@ default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="Line2D8" type="Line2D" parent="mappings"]
 position = Vector2(-559, 361)
-points = PackedVector2Array(2287, 495, 2304, 496)
+points = PackedVector2Array(2287, 359, 2303, 359)
 width = 1.0
 default_color = Color(0.766904, 0.650929, 7.70092e-07, 1)
 
 [node name="inputs" type="Node2D" parent="."]
 
 [node name="discrete-in-A" type="LineEdit" parent="inputs"]
-offset_left = 256.0
+offset_left = 232.0
 offset_top = 976.0
-offset_right = 569.0
+offset_right = 545.0
 offset_bottom = 1009.0
 theme_override_fonts/font = ExtResource("18_mompm")
 theme_override_font_sizes/font_size = 42
@@ -533,10 +564,10 @@ offset_bottom = 31.0
 text = "A"
 
 [node name="discrete-in-B" type="LineEdit" parent="inputs"]
-offset_left = 256.0
-offset_top = 1032.0
-offset_right = 649.0
-offset_bottom = 1065.0
+offset_left = 584.0
+offset_top = 976.0
+offset_right = 977.0
+offset_bottom = 1009.0
 theme_override_fonts/font = ExtResource("18_mompm")
 theme_override_font_sizes/font_size = 42
 placeholder_text = "000000000000000000000000"
@@ -553,9 +584,9 @@ text = "B"
 
 [node name="Run" type="TextureButton" parent="."]
 offset_left = 856.0
-offset_top = 960.0
+offset_top = 712.0
 offset_right = 931.0
-offset_bottom = 1000.0
+offset_bottom = 752.0
 texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
 texture_hover = ExtResource("20_on05t")
@@ -570,14 +601,33 @@ theme_override_font_sizes/font_size = 10
 text = "  Run next
 instruction"
 
-[node name="reset" type="TextureButton" parent="."]
-offset_left = 760.0
-offset_top = 960.0
-offset_right = 835.0
-offset_bottom = 1000.0
+[node name="run-all" type="TextureButton" parent="."]
+offset_left = 952.0
+offset_top = 712.0
+offset_right = 1027.0
+offset_bottom = 752.0
 texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
 texture_hover = ExtResource("20_on05t")
+script = ExtResource("21_5k0l0")
+
+[node name="Label" type="Label" parent="run-all"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 10
+text = "Run Program"
+
+[node name="reset" type="TextureButton" parent="."]
+offset_left = 760.0
+offset_top = 712.0
+offset_right = 835.0
+offset_bottom = 752.0
+texture_normal = ExtResource("25_16g0g")
+texture_pressed = ExtResource("26_mw07y")
+texture_hover = ExtResource("27_mts58")
 script = ExtResource("23_pik2t")
 
 [node name="Label" type="Label" parent="reset"]
@@ -592,13 +642,13 @@ text = "Reset"
 script = ExtResource("22_t38co")
 
 [node name="code-sheet" type="Node2D" parent="."]
-position = Vector2(96, 424)
+position = Vector2(-64, -8)
 
 [node name="add-unflagged" type="TextureButton" parent="code-sheet"]
 offset_left = 328.0
-offset_top = 2056.0
+offset_top = 1240.0
 offset_right = 403.0
-offset_bottom = 2096.0
+offset_bottom = 1280.0
 texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
 texture_hover = ExtResource("20_on05t")
@@ -614,9 +664,9 @@ Instruction"
 
 [node name="save-to-mem" type="TextureButton" parent="code-sheet"]
 offset_left = 424.0
-offset_top = 2056.0
+offset_top = 1240.0
 offset_right = 499.0
-offset_bottom = 2096.0
+offset_bottom = 1280.0
 texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
 texture_hover = ExtResource("20_on05t")

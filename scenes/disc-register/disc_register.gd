@@ -64,7 +64,7 @@ func value_to_binary(value_in):
 		#TODO - set to take left side for registers in case of overflow
 		#this ensures magnitude is correct bur precision lost on overflow
 		#ie, it is set up for floats not ints - integer overflows will give incorrect results
-		if ret_str.length() >= num_registers and accumulator_flag == true:
+		if ret_str.length() > num_registers and accumulator_flag == true:
 			if value_in < 0:
 				ret_str = ret_str.left(num_registers) #TODO - set to take left side for registers			
 			else:

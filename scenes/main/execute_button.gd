@@ -309,7 +309,6 @@ func sad():
 	var accumulator_binary = value_to_binary(accumulator_reg.register_value,24)
 	var accumulator_left = accumulator_binary.substr(0,10)
 	var accumulator_right = accumulator_binary.substr(14,10)
-
 	
 	var operand_binary = value_to_binary(number_reg.register_value,24)
 	var operand_left = operand_binary.substr(0,10)
@@ -321,12 +320,13 @@ func sad():
 	var operand_right_int = signed_bin_to_int(operand_right)
 
 	
-	var left_new = value_to_binary(accumulator_left_int + operand_left_int, 12)
-	var right_new = value_to_binary(accumulator_right_int + operand_right_int, 12)
+	var left_new = value_to_binary(accumulator_left_int + operand_left_int, 10)
+	var right_new = value_to_binary(accumulator_right_int + operand_right_int, 10)
 	
-	var new_acc_binary = left_new + right_new
+	var new_acc_binary = left_new + '0000' + right_new
 	var new_acc = signed_bin_to_int(new_acc_binary)
 	accumulator_reg.register_value = new_acc
+
 	
 func ssu():
 	var accumulator_binary = value_to_binary(accumulator_reg.register_value,24)
