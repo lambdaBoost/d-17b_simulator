@@ -205,6 +205,9 @@ func value_to_binary(value_in, num_registers):
 		else:
 			ret_str = "0" + ret_str
 			
+		if ret_str.length() > num_registers:
+			ret_str = ret_str.right(num_registers)
+			
 
 		return ret_str
 

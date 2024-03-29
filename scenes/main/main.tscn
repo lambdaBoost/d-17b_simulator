@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=27 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -24,6 +24,7 @@
 [ext_resource type="Script" path="res://scenes/main/execute_button.gd" id="21_5k0l0"]
 [ext_resource type="Script" path="res://scenes/main/program-control.gd" id="22_t38co"]
 [ext_resource type="Script" path="res://scenes/main/add-unflagged.gd" id="23_etel3"]
+[ext_resource type="Script" path="res://scenes/main/reset.gd" id="23_pik2t"]
 [ext_resource type="Script" path="res://scenes/main/save-to-mem.gd" id="25_8s5yp"]
 
 [node name="main" type="Node2D"]
@@ -192,6 +193,7 @@ register_type = "instruction"
 position = Vector2(-192, -621)
 num_registers = 24
 register_type = "arithmetic"
+accumulator_flag = true
 
 [node name="disc-lower-accumulator" parent="disk-registers" instance=ExtResource("4_a4i63")]
 position = Vector2(-192, -544)
@@ -558,6 +560,33 @@ texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
 texture_hover = ExtResource("20_on05t")
 script = ExtResource("21_5k0l0")
+
+[node name="Label" type="Label" parent="Run"]
+layout_mode = 0
+offset_left = 11.0
+offset_right = 64.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 10
+text = "  Run next
+instruction"
+
+[node name="reset" type="TextureButton" parent="."]
+offset_left = 760.0
+offset_top = 960.0
+offset_right = 835.0
+offset_bottom = 1000.0
+texture_normal = ExtResource("18_uoexn")
+texture_pressed = ExtResource("19_n4kv3")
+texture_hover = ExtResource("20_on05t")
+script = ExtResource("23_pik2t")
+
+[node name="Label" type="Label" parent="reset"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 4.0
+offset_right = 57.0
+offset_bottom = 27.0
+text = "Reset"
 
 [node name="program-control" type="Node2D" parent="."]
 script = ExtResource("22_t38co")

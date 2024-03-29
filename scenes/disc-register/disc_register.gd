@@ -6,6 +6,7 @@ extends Node2D
 @export var num_sectors: int
 @export var displayed_value: String
 @export var register_type: String #arithmetic or instruction (store in decimal or binary string)
+@export var accumulator_flag: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,7 +49,7 @@ func value_to_binary(value_in):
 			
 		#this covers the case where instructions are sent to the i-register
 		#may cause issues later with arithmetic operations (might not though)	
-		if ret_str.length() == num_registers:
+		if ret_str.length() == num_registers and accumulator_flag == false:
 			return ret_str
 			
 		while ret_str.length() < num_registers-1:
@@ -59,8 +60,15 @@ func value_to_binary(value_in):
 			ret_str = "1" + ret_str
 		else:
 			ret_str = "0" + ret_str
-			
-
+		
+		#TODO - set to take left side for registers in case of overflow
+		#this ensures magnitude is correct bur precision lost on overflow
+		#ie, it is set up for floats not ints - integer overflows will give incorrect results
+		if ret_str.length() >= num_registers and accumulator_flag == true:
+			if value_in < 0:
+				ret_str = ret_str.left(num_registers) #TODO - set to take left side for registers			
+			else:
+				ret_str = '0' + ret_str.left(num_registers-1)#TODO - might not need the -1 here
 		return ret_str
 		
 		

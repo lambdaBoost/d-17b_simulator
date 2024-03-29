@@ -5,9 +5,11 @@ extends TextureButton
 @onready var lower_accumulator_reg = get_node("../disk-registers/disc-lower-accumulator")
 @onready var number_reg = get_node("../disk-registers/disc-number")
 
+@export var first_instruction = true
+
 var next_instruction_channel
 var next_instruction_sector
-var first_instruction = true
+
 var operand_sector
 var operand_sector_binary
 var operand_channel
