@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dm2l75v6t7uhg"]
+[gd_scene load_steps=31 format=3 uid="uid://dm2l75v6t7uhg"]
 
 [ext_resource type="PackedScene" uid="uid://cfpa65f6ekhja" path="res://scenes/flip-flop/flipflop4.tscn" id="1_0fj50"]
 [ext_resource type="PackedScene" uid="uid://benlnftq737gw" path="res://scenes/flip-flop/flipflop1.tscn" id="1_i6vw8"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b4djc7n3akvto" path="res://assets/button_hover.png" id="20_on05t"]
 [ext_resource type="Script" path="res://scenes/main/execute_button.gd" id="21_5k0l0"]
 [ext_resource type="Script" path="res://scenes/main/program-control.gd" id="22_t38co"]
+[ext_resource type="Script" path="res://scenes/main/run-all.gd" id="23_bepl5"]
 [ext_resource type="Script" path="res://scenes/main/add-unflagged.gd" id="23_etel3"]
 [ext_resource type="Script" path="res://scenes/main/reset.gd" id="23_pik2t"]
 [ext_resource type="Script" path="res://scenes/main/save-to-mem.gd" id="25_8s5yp"]
@@ -202,6 +203,7 @@ accumulator_flag = true
 position = Vector2(-192, -544)
 num_registers = 24
 register_type = "arithmetic"
+accumulator_flag = true
 
 [node name="Label" type="Label" parent="disk-registers"]
 offset_left = 848.0
@@ -609,7 +611,7 @@ offset_bottom = 752.0
 texture_normal = ExtResource("18_uoexn")
 texture_pressed = ExtResource("19_n4kv3")
 texture_hover = ExtResource("20_on05t")
-script = ExtResource("21_5k0l0")
+script = ExtResource("23_bepl5")
 
 [node name="Label" type="Label" parent="run-all"]
 layout_mode = 0

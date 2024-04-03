@@ -23,10 +23,10 @@ func _process(delta):
 	
 	var register_binary_label = get_node("value_binary")
 	
-	if register_value >= 10000000000:
-		var value_str = str(register_value)
-		value_str = value_str.left(10)
-		var new_val = int(value_str)
+	while register_value >= 8388608:
+		
+		var new_val = register_value / 10
+		new_val = int(new_val)
 		register_value = new_val
 	
 	
@@ -71,11 +71,11 @@ func value_to_binary(value_in):
 		#TODO - set to take left side for registers in case of overflow
 		#this ensures magnitude is correct bur precision lost on overflow
 		#ie, it is set up for floats not ints - integer overflows will give incorrect results
-		if ret_str.length() > num_registers and accumulator_flag == true:
-			if value_in < 0:
-				ret_str = ret_str.left(num_registers) #TODO - set to take left side for registers			
-			else:
-				ret_str = ret_str.left(num_registers)#TODO - might not need the -1 here
+		#if ret_str.length() > num_registers and accumulator_flag == true:
+		#	if value_in < 0:
+		#		ret_str = ret_str.left(num_registers) #TODO - set to take left side for registers			
+		#	else:
+		#		ret_str = ret_str.left(num_registers)#TODO - might not need the -1 here
 		return ret_str
 		
 		

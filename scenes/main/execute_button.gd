@@ -6,6 +6,7 @@ extends TextureButton
 @onready var number_reg = get_node("../disk-registers/disc-number")
 
 @export var first_instruction = true
+@export var halted = false
 
 var next_instruction_channel
 var next_instruction_sector
@@ -117,6 +118,8 @@ func _button_pressed():
 		vob()
 	elif operation == '1000' and operand_channel_binary == '10001':
 		voc()
+	elif operation == '1000' and operand_channel_binary == '01011':
+		hpr()
 
 func load_first_instruction():
 	var first_channel = get_node("../code-sheet/row0/current_channel")
@@ -506,6 +509,11 @@ func voc():
 		voltage_binary = voltage_binary.substr(3,8)
 		var voltage_decimal = voltage_binary.bin_to_int()
 		dac_register.register_value = voltage_decimal
+		
+		
+func hpr():
+	
+	halted = true
 	
 	
 func value_to_binary(value_in, num_registers):
