@@ -23,6 +23,13 @@ func _process(delta):
 	
 	var register_binary_label = get_node("value_binary")
 	
+	if register_value >= 10000000000:
+		var value_str = str(register_value)
+		value_str = value_str.left(10)
+		var new_val = int(value_str)
+		register_value = new_val
+	
+	
 	if register_type == 'arithmetic':
 		var register_binary = value_to_binary(register_value)
 		register_binary_label.text = register_binary
@@ -68,7 +75,7 @@ func value_to_binary(value_in):
 			if value_in < 0:
 				ret_str = ret_str.left(num_registers) #TODO - set to take left side for registers			
 			else:
-				ret_str = '0' + ret_str.left(num_registers-1)#TODO - might not need the -1 here
+				ret_str = ret_str.left(num_registers)#TODO - might not need the -1 here
 		return ret_str
 		
 		
