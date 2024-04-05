@@ -461,14 +461,17 @@ bitnames_label = "V30 V20 V10"
 [node name="voltage_output2" parent="outputs" instance=ExtResource("15_orrxs")]
 position = Vector2(-152, -384)
 bitnames_label = "V31 V21 V11"
+output_label = 1
 
 [node name="voltage_output3" parent="outputs" instance=ExtResource("15_orrxs")]
 position = Vector2(-152, -280)
 bitnames_label = "V32 V22 V12"
+output_label = 2
 
 [node name="voltage_output4" parent="outputs" instance=ExtResource("15_orrxs")]
 position = Vector2(-152, -176)
 bitnames_label = "V33 V23 V13"
+output_label = 3
 
 [node name="phase-register" parent="outputs" instance=ExtResource("5_6nj2o")]
 position = Vector2(-352, -416)

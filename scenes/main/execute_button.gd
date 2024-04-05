@@ -425,7 +425,6 @@ func coa():
 	var a_value= accumulator_reg.register_value
 	var a_binary = value_to_binary(a_value, 24)
 	var a_output = a_binary.left(4)
-	print(a_output)
 	#character_out_register.displayed_value = a_output
 	var decimal_output = a_output.bin_to_int() #unsigned as we just transfer bstring
 	character_out_register.register_value = decimal_output
@@ -439,7 +438,7 @@ func lpr():
 	"""
 	var phase_reg = get_node('../outputs/phase-register')
 	var phase_reg_value = operand_sector_binary.right(3)
-	
+	print(phase_reg_value)
 	phase_reg.displayed_value = phase_reg_value
 	
 func voa():
